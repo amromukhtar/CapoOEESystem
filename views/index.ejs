@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+</head>
+
+<body class="capo-background">
+    <div class="container flex-row flex-c-m">
+        <form action="/live-view">
+            <button class="main-btn m-r-50" type="submit">Live View</button>
+        </form>
+        <form action="/set-inputs">
+            <button class="main-btn m-r-50" type="submit">Set Inputs</button>
+        </form>
+        <form action="/reports">
+            <button class="main-btn m-r-50">Report</button>
+        </form>
+        <% if (isAdmin == true) { %>
+        <form action="/settings">
+            <button class="main-btn m-r-50">Settings</button>
+        </form>
+        <% } %>
+    </div>
+</body>
+
+</html>

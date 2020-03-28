@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Live View</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        .nav-bar {
+            width: 100%;
+            height: 170px;
+            position: sticky;
+            background-color: rgba(101, 111, 202, 0.918);
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+            /* border-radius: 0 20px 20px 0; */
+            /* border-right: 1px solid black; */
+        }
+
+        .live-view-container {
+            width: 100%;
+            height: 100%;
+            background-color: #f2f2f2;
+            opacity: 0.94;
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        .table {
+            margin-left: 30px;
+            table-layout: fixed;
+            flex-basis: 100%;
+            height: 70%;
+            border: none;
+        }
+
+        .loader {
+            border: 30px solid #f3f3f3;
+            /* Light grey */
+            border-top: 30px solid #3498db;
+            /* Blue */
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="capo-background">
+
+    <div class="live-view-container flex-c-m">
+        <div class="nav-bar" style="display: none;">
+            <img src="/images/capo-milk.jpg" alt="" width="160" height="160">
+            <div class="row">
+                <p class="txt5">Batch No: </p>
+                <p class="txt5" id="batchNo">0</p>
+            </div>
+            <div class="row">
+                <p class="txt5">Machine: </p>
+                <p class="txt5" id="machine">Terpko A</p>
+            </div>
+            <div class="row">
+                <p class="txt5">Product: </p>
+                <p class="txt5" id="product">Milk</p>
+            </div>
+            <div class="row">
+                <p class="txt5">Date: </p>
+                <p class="txt5" id="date">03/23/2020</p>
+            </div>
+        </div>
+        <table class="table" style="display:none;">
+            <tbody>
+                <tr>
+                    <td class="txt3" id="label1">TARGET</td>
+                    <td class="txt3" id="field1" style="color: #0cf500;">00</td>
+                </tr>
+                <tr>
+                    <td class="txt3" id="label2">ACTUAL</td>
+                    <td class="txt3" id="field2" style="color: #fcba03;">00</td>
+                </tr>
+                <tr>
+                    <td class="txt3" id="label3">M.EFF</td>
+                    <td class="txt3" id="field3" style="color: #0f03fc;">00%</td>
+                </tr>
+                <tr>
+                    <td class="txt3" id="label4">DOWN TIME</td>
+                    <td class="txt3" id="field4" style="color: #fc0303;">00:00:00</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="loader"></div>
+        <input style="display: none;" id="runningBatches" value="<%=runningBatches%>"></input>
+    </div>
+    <script src="/js/live-view.js"></script>
+</body>
+
+</html>
+
+</html>

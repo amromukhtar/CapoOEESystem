@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Inputs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    </script>
+    <!--===============================================================================================-->
+    <style>
+        .input-form {
+            border-radius: 10px;
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .start-btn {
+            background-color: #45a049;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            width: 480px;
+            height: 60px;
+        }
+
+        .stop-btn {
+            background-color: #ec0a0a;
+            color: #ffffff;
+            border: none;
+            margin-left: 10px;
+            border-radius: 5px;
+            width: 60px;
+            height: 90px;
+        }
+
+        .running-batch-form {
+            height: 90%;
+            width: 320px;
+            border-radius: 10px;
+            display: none;
+            /* background-color: chocolate; */
+        }
+
+        .batch-list {
+            width: 100%;
+        }
+
+        .list-item {
+            width: 90%;
+            height: 130px;
+            border-radius: 10px;
+            background-color:white;
+            /* border: 2px solid rgba(132, 229, 132, 0.719); */
+            border: 2px solid rgba(229, 132, 132, 0.719);
+        }
+    </style>
+</head>
+
+<body class="capo-background">
+    <div class="container flex-c-m">
+        <form class='input-form validate-form'>
+
+            <div class="row flex-c" style="width: 100%;">
+                <div class="col-25">
+                    <label class='txt-input-form'>Date</label>
+                </div>
+                <div class="col-40 validate-input" data-validate="Date Is required">
+                    <input class="input-1  input100" type="date" id="date"></input>
+                </div>
+            </div>
+            <div class="row flex-c" style="width: 100%;">
+                <div class="col-25">
+                    <label class='txt-input-form'>Batch Number</label>
+                </div>
+                <div class="col-40 validate-input" data-validate="Batch No Is required">
+                    <input class="input-1 input100" type="text" id="batchNo" placeholder="Batch Number">
+                </div>
+            </div>
+            <div class="row flex-c" style="width: 100%;">
+                <div class="col-25">
+                    <label class='txt-input-form'>Machine</label>
+                </div>
+                <div class="col-40 validate-input" data-validate="Machine Is required">
+                    <select class="input100" id="machine">
+                        <option></option>
+                        <option value="0">Trepko A</option>
+                        <option value="1">Trepko B</option>
+                        <option value="2">Trepko C</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row flex-c" style="width: 100%;">
+                <div class="col-25">
+                    <label class='txt-input-form'>Product</label>
+                </div>
+                <div class="col-40 validate-input" data-validate="Product Is required">
+                    <select class="input100" id="product">
+                        <option></option>
+                        <option value="Set">Set</option>
+                        <option value="Natural">Natural</option>
+                        <option value="Delights Custard">Delights Custard</option>
+                        <option value="Delights Chocolate">Delights Chocolate</option>
+                        <option value="Hilba Madida">Hilba Madida</option>
+                        <option value="Millet Madida">Millet Madida</option>
+                        <option value="Date & Millet Madida">Date & Millet Madida</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row flex-c" style="width: 100%;">
+                <div class="col-25">
+                    <label class='txt-input-form'>Traget</label>
+                </div>
+                <div class="col-40 validate-input" data-validate="Traget Is required">
+                    <input class="input-1 input100" type="text" id="target" placeholder="Traget">
+                </div>
+            </div>
+            <div class="row flex-c" style="width: 100%;">
+                <div class="col-25">
+                    <label class='txt-input-form'>Planed Production Time</label>
+                </div>
+                <div class="col-40 validate-input" data-validate="PPT Is required">
+                    <input class="input-1 input100" type="text" id="ppt" placeholder="PPT in MIN">
+                </div>
+            </div>
+            <div class="row flex-c" style="width: 100%;">
+                <div class="col-25">
+                    <label class='txt-input-form'>Planed Stop Time</label>
+                </div>
+                <div class="col-40 validate-input" data-validate="PST Is required">
+                    <input class="input100 input-1" type="text" id="pst" placeholder="PST in MIN">
+                </div>
+            </div>
+            <div class="row">
+                <button class="login100-form-btn m-t-30 start-btn" id="start-btn">Start</button>
+            </div>
+        </form>
+        <div class="running-batch-form flex-c-m">
+            <ul class="batch-list flex-c-m col"></ul>
+        </div>
+        <input style="display: none;" id="getBatches" value="<%=batch%>"></input>
+    </div>
+
+
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+
+    <script src="js/inputs.js"></script>
+
+</body>
+
+</html>
