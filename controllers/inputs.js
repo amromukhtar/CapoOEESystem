@@ -4,14 +4,17 @@ const batch = require('../app');
 let id = {};
 
 exports.setInputs = (req, res, next) => {
-    if (req.session.isLogged == true) {
-        res.render('inputs', {
-            batch: JSON.stringify([batch.batch1, batch.batch2, batch.batch3])
-        });
-    }
-    else {
-        res.render('login');
-    }
+    res.render('inputs', {
+        batch: JSON.stringify([batch.batch1, batch.batch2, batch.batch3])
+    });
+    // if (req.session.isLogged == true) {
+    //     res.render('inputs', {
+    //         batch: JSON.stringify([batch.batch1, batch.batch2, batch.batch3])
+    //     });
+    // }
+    // else {
+    //     res.render('login');
+    // }
 }
 
 exports.postInputs = (req, res, next) => {

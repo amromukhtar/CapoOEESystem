@@ -1,5 +1,6 @@
 const io = require('../app');
-const CircularJSON = require('circular-json');
+const db = require('../util/database/database');
+
 const machine = ['Terpko A', 'Terpko B', 'Terpko C'];
 const batchName = ['batch1', 'batch2', 'batch3'];
 
@@ -75,29 +76,20 @@ module.exports = class Batch {
         return id;
     }
 
-    // updateBatch = () => {
-    //     setInterval(() => {
-    //         io.sendData({
-    //             batchNo: this.batchNo,
-    //             machine: this.machine,
-    //             machineNo: this.machineNo,
-    //             product: this.product,
-    //             date: this.date,
-    //             target: this.target,
-    //             actual: this.actualCount,
-    //             mEff: this.getMeff(),
-    //             downTime: this.getDownTime(),
-    //         });
-    //     }, 1000);
-    // }
+    endBatch = () => {
+        db.addBatch(this.date, this.batchNo, this.machine, this.product, this.target, this.actualCount, this.ppt, this.pst, this.actualDownTime, '90%', '83%', '88%', '70%')
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
 
-    endBatch = (id) => {
         this.tempDownTime = 0;
         this.actualDownTime = 0;
         this.actualCount = 0;
         this.status = 'FINISHED';
         this.running = true;
-        // clearInterval(id);
     }
 
 
