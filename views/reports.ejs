@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Reports</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/reports.css">
+    </script>
+    <style>
+        .report-list {
+            flex-basis: 100%;
+        }
+
+        .report-item {
+            width: 60%;
+            height: 300px;
+            margin-top: 30px;
+            background-color: white;
+            border-radius: 7px;
+            display: flex;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+</head>
+
+<body style="background-color: white">
+    <!-- <div id='nav'> -->
+    <ul class="nav-bar" id="navbar">
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#">News</a></li>
+    </ul>
+    <div class="tab" id="tab">
+        <button class="tablinks active" id="terpko-A">Terpko A</button>
+        <button class="tablinks" id="terpko-B">Terpko B</button>
+        <button class="tablinks" id="terpko-C">Terpko C</button>
+    </div>
+    <!-- </div> -->
+    <div>
+        <ul class="report-list flex-m col">
+        </ul>
+    </div>
+
+    <script src="js/report.js"></script>
+
+</body>
+
+</html>

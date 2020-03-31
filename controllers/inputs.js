@@ -20,7 +20,7 @@ exports.setInputs = (req, res, next) => {
 exports.postInputs = (req, res, next) => {
 
     const paramters = req.body;
-    // console.log(req.body);
+    console.log(req.body);
 
     if (paramters.status == 'starting') {
 
@@ -40,17 +40,18 @@ exports.postInputs = (req, res, next) => {
     }
     else {
         if (paramters.machine == '0') {
-            batch.batch1.endBatch(id.batch1);
+            batch.batch1.endBatch();
         }
         else if (paramters.machine == '1') {
-            batch.batch2.endBatch(id.batch2);
+            batch.batch2.endBatch();
         }
         else if (paramters.machine == '2') {
-            batch.batch3.endBatch(id.batch3);
+            batch.batch3.endBatch();
         }
     }
 
-    return res.end(JSON.stringify([batch.batch1, batch.batch2, batch.batch3]));
+    res.send(JSON.stringify([batch.batch1, batch.batch2, batch.batch3]));
+    // return res.end(JSON.stringify([batch.batch1, batch.batch2, batch.batch3]));
 
 }
 

@@ -1,5 +1,6 @@
 const io = require('../app');
-const db = require('../util/database/database');
+const BatchDB = require('../util/database/database');
+
 
 const machine = ['Terpko A', 'Terpko B', 'Terpko C'];
 const batchName = ['batch1', 'batch2', 'batch3'];
@@ -25,6 +26,7 @@ module.exports = class Batch {
         this.tempDownTime = 0;
         this.actualDownTime = 10;
         this.perDefinedDownTime = 10;
+        this.startingTime = new Date().getTime();
         this.status = 'RUNNING';
         this.running = true;
 
@@ -77,14 +79,13 @@ module.exports = class Batch {
     }
 
     endBatch = () => {
-        db.addBatch(this.date, this.batchNo, this.machine, this.product, this.target, this.actualCount, this.ppt, this.pst, this.actualDownTime, '90%', '83%', '88%', '70%')
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((err) => {
-                console.log(err)
-            });
+        // Getting last batch parameters
+        this.endingTime = new Date().getTime();
 
+        // Saving Batch in DB
+        this.addBatch();
+
+        // Clearing Batch parameters
         this.tempDownTime = 0;
         this.actualDownTime = 0;
         this.actualCount = 0;
@@ -95,9 +96,36 @@ module.exports = class Batch {
 
     // CALCULATIONS
     getMeff = () => {
-        return '90%';
+        return '90 %';
     }
     // UTILS
+
+    addBatch = () => {
+        const batch = new BatchDB({
+            date: { date: this.date, startTime: this.startTime, endTime: this.endTime },
+            batchNo: this.batchNo,
+            machine: this.machine,
+            product: this.product,
+            target: this.target,
+            actual: this.actualCount,
+            ppt: this.ppt,
+            pst: this.pst,
+            meff: this.getMeff(),
+            downTime: this.actualDownTime,
+            oee: '90%',
+            quality: '83%',
+            availability: '88%',
+            performance: '70%',
+            supervisor:'Ahmed Omer'
+        })
+        batch.save()
+            .then((result) => {
+                console.log(result)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
     updateActualDownTime = () => {
         this.tempDownTime++;
         if (this.tempDownTime > this.perDefinedDownTime) {

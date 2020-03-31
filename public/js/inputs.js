@@ -41,23 +41,33 @@ let response = batch;
 
             if (status === 'RUNNING') {
                 alert('This Machine is already running other batch !! Stop the running batch first');
-
             } else {
-                let xhr = new XMLHttpRequest();
-                let url = "http://" + document.domain + ":3000/post-inputs";
-                xhr.open("POST", url, true);
-                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        console.log(this.responseText)
-                        response = JSON.parse(this.responseText);
-                        renderRunningBatches(response);
-                    }
-                };
-                xhr.send(`status=starting&date=${date.value}&machine=${machine.value}&batchNo=${batchNo.value}&product=${product.value}&target=${target.value}&ppt=${ppt.value}&pst=${pst.value}`);
+                fetch("http://" + document.domain + ":3000/post-inputs", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        status: 'starting',
+                        date: date.value,
+                        machine: machine.value,
+                        batchNo: batchNo.value,
+                        product: product.value,
+                        target: target.value,
+                        ppt: ppt.value,
+                        pst: pst.value,
+                    })
+                }).then((res) => {
+                    res.json()
+                        .then((res) => {
+                            console.log(res)
+                            response = res;
+                            renderRunningBatches(response);
+                        })
+                }).catch((err) => { console.log(err) })
             }
-
         }
+
         e.preventDefault();
         return check;
     });
@@ -165,11 +175,31 @@ batchList.addEventListener('click', (e) => {
 
         const ret = confirm("Do you want to stop this batch ?");
         if (ret == true) {
-            let xhr = new XMLHttpRequest();
-            let url = "http://" + document.domain + ":3000/post-inputs";
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.send(`status=stopping&machine=${e.target.parentElement.id}`);
+
+            fetch("http://" + document.domain + ":3000/post-inputs", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        status: 'ending',
+                        machine: e.target.parentElement.id,
+                    })
+                }).then((res) => {
+                    res.json()
+                        .then((res) => {
+                            console.log(res)
+                            response = res;
+                            renderRunningBatches(response);
+                        })
+                }).catch((err) => { console.log(err) })
+
+
+            // let xhr = new XMLHttpRequest();
+            // let url = "http://" + document.domain + ":3000/post-inputs";
+            // xhr.open("POST", url, true);
+            // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            // xhr.send(`status=stopping&machine=${e.target.parentElement.id}`);
 
             e.target.parentElement.parentElement.remove();
 

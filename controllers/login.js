@@ -5,28 +5,36 @@ exports.getLogin = (req, res, next) => {
 
 exports.postLogin = (req, res, next) => {
     console.log(req.body);
-    if (req.body.username == 'capo' && req.body.pass == 'capo') {
-        req.session.isLogged = true;
-        res.redirect('/index');
+    // if (req.body.username == 'capo' && req.body.pass == 'capo') {
+    //     req.session.isLogged = true;
+    //     res.redirect('/index');
+    // }
+    // else if (req.body.username == 'admin' && req.body.pass == 'admin123') {
+    //     req.session.isLogged = true;
+    //     req.session.isAdmin = true;
+    //     res.redirect('/index');
+    // }
+    // else {
+    //     res.redirect('/login');
+    // }
+    if (req.body.username == 'amromukhtar') {
+        res.redirect('/index')
     }
-    else if (req.body.username == 'admin' && req.body.pass == 'admin123') {
-        req.session.isLogged = true;
-        req.session.isAdmin = true;
-        res.redirect('/index');
-    }
-    else {
-        res.redirect('/login');
-    }
+    res.json({
+        response: 'failed'
+    });
 }
 
 exports.index = (req, res, next) => {
 
-    if (req.session.isLogged == true && req.session.isAdmin == true) {
-        res.render('index', { isAdmin: true });
-    } else if (req.session.isLogged == true) {
-        res.render('index', { isAdmin: false });
-    } else {
-        res.render('login');
-    }
+    // if (req.session.isLogged == true && req.session.isAdmin == true) {
+    //     res.render('index', { isAdmin: true });
+    // } else if (req.session.isLogged == true) {
+    //     res.render('index', { isAdmin: false });
+    // } else {
+    //     res.render('login');
+    // }
+
+    res.render('index', { isAdmin: false });
 
 }

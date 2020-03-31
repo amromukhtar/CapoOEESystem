@@ -2,8 +2,11 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
 const session = require('express-session');
+const mongoose = require('mongoose');
+
+const app = express();
+
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -16,7 +19,8 @@ const batch1 = new Batch();
 const batch2 = new Batch();
 const batch3 = new Batch();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'capo oee system', saveUninitialized: false, resave: false }));
 
@@ -49,6 +53,13 @@ app.use(authRouter);
 //     }
 // }
 
+mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false')
+    .then((result) => {
+        console.log('Mongo DB Connected');
+    })
+    .catch((err) => {
+        console.log(err)
+    })
 const server = app.listen(3000);
 const io = require('socket.io')(server);
 
