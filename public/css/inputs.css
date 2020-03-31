@@ -1,0 +1,141 @@
+.container {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #f2f2f2;
+    opacity: 0.94;
+    padding: 20px;
+  }
+
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+    border: none;
+}
+
+.col-15 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+}
+
+.col-25 {
+    float: left;
+    width: 220px;
+    margin-top: 6px;
+}
+
+.col-40 {
+  float: left;
+  width: 250px;
+  margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+  .txt1 {
+    font-family: Raleway-SemiBold;
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  
+  .txt2 {
+    font-family: Raleway-Regular;
+    font-size: 13px;
+    color: #999999;
+    line-height: 1.4;
+  }
+  
+  .txt3 {
+    font-family: Verdana;
+    font-size: 100px;
+    font-weight: 1000;
+    color: #000000;
+    line-height: 0.1;
+  }
+  
+  .txt4 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: #000000;
+    line-height: 0.1;
+  }
+  
+  .txt5 {
+    font-family: Raleway-SemiBold;
+    font-size: 35px;
+    color: black;
+    line-height: 1.5;
+    /* text-transform: uppercase; */
+  }
+  
+  .txt-input-form{
+    font-family: Raleway-SemiBold;
+    font-size: 17px;
+    color: #000000;
+    line-height: 0.1;
+  }
+
+.input-form {
+    border-radius: 10px;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-btn {
+    background-color: #45a049;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    width: 480px;
+    height: 60px;
+}
+
+.stop-btn {
+    background-color: #ec0a0a;
+    color: #ffffff;
+    border: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    width: 60px;
+    height: 90px;
+}
+
+.running-batch-form {
+    height: 90%;
+    width: 320px;
+    border-radius: 10px;
+    display: none;
+    /* background-color: chocolate; */
+}
+
+.batch-list {
+    width: 100%;
+}
+
+.list-item {
+    width: 90%;
+    height: 130px;
+    border-radius: 10px;
+    background-color: white;
+    /* border: 2px solid rgba(132, 229, 132, 0.719); */
+    border: 2px solid rgba(229, 132, 132, 0.719);
+}
