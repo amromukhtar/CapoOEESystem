@@ -1,7 +1,7 @@
 const io = require('../app');
 
-const SerialPort = require('serialport');
-const Readline = require('@serialport/parser-readline');
+const SerialPort = require('./node_modules/serialport');
+const Readline = require('./node_modules/@serialport/parser-readline');
 const port = new SerialPort('COM11');
 const parser = port.pipe(new Readline({ delimiter: '\n' }));
 

@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 const router = require('./routes/main-routes');
 const constant = require('./data/constants');
 
-const Batch = require('./models/Batch');
+const Batch = require('./Models/Batch');
 
 const batch1 = new Batch();
 const batch2 = new Batch();
