@@ -7,30 +7,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
-<body class="capo-background">
-    <ul class="nav-bar">
-        <li><a class="active" href="#home">Home</a></li>
-        <li><a href="#news">News</a></li>
-    </ul>
+<body class="capo-background ">
+    <nav class="navbar navbar-default" style="margin: 0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Home Page</a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand txt5" style="margin-left: 430px; color:rgb(19, 18, 18)">Capo OEE System</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><%= username %></a></li>
+                    <li class="logout">
+                        <a href="#" id="logout">Logout</a>
+                        <form id="logout-form" action="/logout" method="post"></form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container flex-row flex-c-m">
         <form action="/live-view">
-            <button class="main-btn m-r-50" type="submit">Live View</button>
+            <button class="main-btn m-r-50" type="submit">
+                <div class="col flex-c-m">
+                    <img class="m-b-10" src="/images/icons/screen.png" alt="" width="80" height="80">
+                    Live View
+                </div>
+            </button>
         </form>
         <form action="/set-inputs">
-            <button class="main-btn m-r-50" type="submit">Set Inputs</button>
+            <button class="main-btn m-r-50" type="submit">
+                <div class="col flex-c-m">
+                    <img class="m-b-10" src="/images/icons/keyboard.png" alt="" width="80" height="80">
+                    Set Inputs
+                </div>
+            </button>
         </form>
         <form action="/reports">
-            <button class="main-btn m-r-50">Report</button>
+            <button class="main-btn m-r-50">
+                <div class="col flex-c-m">
+                    <img class="m-b-10" src="/images/icons/report.png" alt="" width="80" height="80">
+                    Report
+                </div>
+            </button>
         </form>
-        <% if (isAdmin == true) { %>
+        <% if (authority == "admin") { %>
         <form action="/settings">
-            <button class="main-btn m-r-50">Settings</button>
+            <button class="main-btn m-r-50">
+                <div class="col flex-c-m">
+                    <img class="m-b-10" src="/images/icons/setting.png" alt="" width="80" height="80">
+                    Settings
+                </div>
+            </button>
         </form>
         <% } %>
     </div>
+    <script src="js/logout.js"></script>
 </body>
 
 </html>

@@ -234,6 +234,14 @@ iframe {
   /* text-transform: uppercase; */
 }
 
+.txt8 {
+  font-family: Raleway-SemiBold;
+  font-size: 27px;
+  color: black;
+  line-height: 1.5;
+  /* text-transform: uppercase; */
+}
+
 .txt-input-form{
   font-family: Raleway-SemiBold;
   font-size: 17px;
@@ -296,15 +304,24 @@ iframe {
  background-attachment: fixed;
  background-position: center;
  background-size: 100% 100%;
+ opacity:0.9;
 }
 
-.container {
+/* .container {
   border-radius: 5px;
   width: 100%;
   height: 100%;
   background-color: #f2f2f2;
   opacity: 0.94;
   padding: 20px;
+  
+} */
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  opacity: 0.98;
 }
 
 .container-login100 {
@@ -568,8 +585,8 @@ iframe {
   align-items: center;
   padding: 0 20px;
   min-width: 150px;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background-color: #333333;
   /* background-color: rgb(222, 192, 135); */
   border-radius: 27px;

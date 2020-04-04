@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-theme.min.css">
+    <title>Settings</title>
+    <style>
+        .table-element {
+            margin-top: 10px;
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body class="capo-background ">
+    <nav class="navbar navbar-default" style="margin: 0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Settings Page</a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand txt5" style="margin-left: 430px; color:rgb(19, 18, 18)">Capo OEE System</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><%= username %></a></li>
+                    <li class="logout">
+                        <a href="#" id="logout">Logout</a>
+                        <form id="logout-form" action="/logout" method="post"></form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container col" style="display: flex; align-items: center;">
+        <!-- <div class="col" style="width: 100%;"> -->
+        <table style="width: 100%; margin-top: 100px;">
+            <tr>
+                <td></td>
+                <td align="center" class="txt7">Terpko A</td>
+                <td align="center" class="txt7">Terpko B</td>
+                <td align="center" class="txt7">Terpko C</td>
+                <td align="center" class="txt7">Erca A</td>
+                <td align="center" class="txt7">Erca B</td>
+                <td align="center" class="txt7">NovaPak</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Downtime</td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="dt-A"
+                        value="<%= downTime[0]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="dt-B"
+                        value="<%= downTime[1]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="dt-C"
+                        value="<%= downTime[2]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="dte-A"
+                        value="<%= downTime[3]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="dte-B"
+                        value="<%= downTime[4]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="dtn-P"
+                        value="<%= downTime[5]%>"></td>
+                <td>Sec</td>
+            </tr>
+            <tr>
+                <td>Cycle Time</td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="ct-A"
+                        value="<%= cycleTime[0]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="ct-B"
+                        value="<%= cycleTime[1]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="ct-C"
+                        value="<%= cycleTime[2]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="cte-A"
+                        value="<%= cycleTime[3]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="cte-B"
+                        value="<%= cycleTime[4]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" id="ctn-P"
+                        value="<%= cycleTime[5]%>"></td>
+                <td>Cycle/min</td>
+            </tr>
+        </table>
+        <button class="login100-form-btn m-t-40 m-l-90 submit-btn">
+            Submit
+        </button>
+        <!-- </div> -->
+    </div>
+    <script src="js/settings.js"></script>
+    <script src="js/logout.js"></script>
+</body>
+
+</html>

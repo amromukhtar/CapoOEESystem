@@ -26,6 +26,11 @@ let response = batch;
                 showValidate(input[i]);
                 check = false;
             }
+            if (Number(input[5].value) < Number(input[6].value)) {
+                showValidate(input[5]);
+                showValidate(input[6]);
+                check = false;
+            }
         }
 
         if (check == true) {
@@ -60,7 +65,7 @@ let response = batch;
                 }).then((res) => {
                     res.json()
                         .then((res) => {
-                            console.log(res)
+                            // console.log(res)
                             response = res;
                             renderRunningBatches(response);
                         })
@@ -136,6 +141,10 @@ const clearData = () => {
     pst.value = '';
 }
 
+
+{/* <p class="txt-input-form">${'Running > > >'}</p>
+</br> */}
+
 renderRunningBatches = (batch) => {
     while (batchList.firstChild) {
         batchList.removeChild(batchList.firstChild);
@@ -143,15 +152,13 @@ renderRunningBatches = (batch) => {
     batch.map((batch) => {
         if (batch.status == 'RUNNING') {
             runningBatchForm.style.display = 'flex';
-            console.log(batch.machine)
+            // console.log(batch.machine)
             const li = document.createElement('li');
-            li.className = 'list-item flex-c-m m-t-20';
+            li.className = 'list-item flex-c-m m-t-10';
             li.innerHTML =
                 li.innerHTML = `
         <div class="row" id=${batch.machineNo}>
-            <div class="m-t-10" style="width=200px">
-              <p class="txt-input-form">${'Running > > >'}</p>
-              </br>
+            <div class="m-t-10" style="width:180px">
               <p class="txt-input-form">${'Batch No: ' + batch.batchNo}</p>
               </br>
               <p class="txt-input-form" name="machine">${'Machine: ' + batch.machine}</p>
@@ -177,22 +184,22 @@ batchList.addEventListener('click', (e) => {
         if (ret == true) {
 
             fetch("http://" + document.domain + ":3000/post-inputs", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        status: 'ending',
-                        machine: e.target.parentElement.id,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    status: 'ending',
+                    machine: e.target.parentElement.id,
+                })
+            }).then((res) => {
+                res.json()
+                    .then((res) => {
+                        // console.log(res)
+                        response = res;
+                        renderRunningBatches(response);
                     })
-                }).then((res) => {
-                    res.json()
-                        .then((res) => {
-                            console.log(res)
-                            response = res;
-                            renderRunningBatches(response);
-                        })
-                }).catch((err) => { console.log(err) })
+            }).catch((err) => { console.log(err) })
 
 
             // let xhr = new XMLHttpRequest();
@@ -206,7 +213,7 @@ batchList.addEventListener('click', (e) => {
             response[e.target.parentElement.id].status = 'FINISHED';
         }
     }
-    console.log(batchList.children)
+    // console.log(batchList.children)
     if (batchList.children.length == 0) {
         runningBatchForm.style.display = 'none';
     }

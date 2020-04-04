@@ -1,22 +1,33 @@
 const tab = document.getElementById('tab');
-const terpkoA = document.getElementById('terpko-A');
-const terpkoB = document.getElementById('terpko-B');
-const terpkoC = document.getElementById('terpko-C');
+const toDate = document.getElementById('toDate')
+const fromDate = document.getElementById('fromDate')
 const reportsList = document.querySelector('.report-list');
-let reports = [];
-// let reports = [{ batchNo: 10, machine: 'Terpko A', product: 'Milk' }, { batchNo: 20, machine: 'Terpko B', product: 'Milk' }];
+const searchBtn = document.querySelector('.search-btn');
 
-fetchRequest('Terpko A');
+let reports = [];
+
+// Initilization
+////////////////////////////////////////////////////
+let machineName = 'Terpko A';
+fromDate.value = moment().format('YYYY-MM-DD');
+toDate.value = moment().format('YYYY-MM-DD');
+fetchRequest(machineName);
+////////////////////////////////////////////////////
+
+
 tab.addEventListener('click', (e) => {
 
     const tabArray = Array.from(tab.children);
     tabArray.map((child) => {
         child.className = child.className.replace(" active", "");
     })
-    fetchRequest(e.target.textContent);
+    machineName = e.target.textContent
+    fetchRequest(machineName);
     e.target.className += " active"
 
 })
+
+
 
 const renderReports = (reports) => {
     while (reportsList.firstChild) {
@@ -43,26 +54,14 @@ const renderReports = (reports) => {
                 <p class="txt7">${report.batchNo}</p>
             </div>
             </div>
-            <div class="col" style="flex-basis: 200%; background-color: rgba(240, 71, 65, 0.733);">
+            <div class="col" style="flex-basis: 200%; background-color: aquamarine;">
                 <div class="row" style="flex-basis: 65%; padding: 15px;">
                     <div
-                        style="flex-basis: 100%;margin-left: 15px;  display: flex; flex-direction: column;justify-content: space-around; border-right: 1px solid rgb(114, 100, 100);">
-                        <div class="row">
-                            <p class="txt2">Target :</p>
-                            <p class="txt2">${report.target}</p>
-                        </div>
-                        <div class="row">
-                            <p class="txt2">Actual :</p>
-                            <p class="txt2">${report.actual}</p>
-                        </div>
-                        <div class="row">
-                            <p class="txt2">M.Eff :</p>
-                            <p class="txt2">${report.meff}</p>
-                        </div>
-                        <div class="row">
-                            <p class="txt2">Downtime :</p>
-                            <p class="txt2">${report.downTime}</p>
-                        </div>
+                        style="flex-basis: 100%;padding: 15px;margin-left: 25px;  display: flex; flex-direction: column;justify-content: space-around; border-right: 1px solid rgb(114, 100, 100);">
+                            <p class="txt2">Target : ${report.target}</p>
+                            <p class="txt2">Actual : ${report.actual}</p>
+                            <p class="txt2">M.Eff : ${report.meff}</p>
+                            <p class="txt2">Downtime : ${report.downTime}</p>
                     </div>
                     <div
                         style="flex-basis: 100%;margin-left: 15px; display: flex; flex-direction: column;justify-content: space-around;">
@@ -75,7 +74,7 @@ const renderReports = (reports) => {
                 </div>
                 <div
                     style="flex-basis: 35%; display: flex;align-items: center; flex-direction: column;justify-content: space-around; ">
-                    <p class="txt2">Date ${report.date.date} at 12:12:00 To 16:12:00</p>
+                    <p class="txt2">Date ${report.date} at 12:12:00 To 16:12:00</p>
                     <p class="txt2">PPT 01:50:00 PST 00:10:00</p>
                     <p class="txt2">Supervisor : ${report.supervisor} </p>
                 </div>
@@ -95,26 +94,30 @@ reportsList.addEventListener('click', (e) => {
     }
 })
 
+searchBtn.addEventListener('click', (e) => {
+    // console.log(e.target.id);
+    fetchRequest(machineName);
+})
+
 
 function fetchRequest(machine) {
-    return new Promise((resolve, rejecet) => {
-        fetch("http://" + document.domain + ":3000/reports/machine", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                machine: machine,
+    fetch("http://" + document.domain + ":3000/reports/machine", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            machine: machine,
+            toDate: toDate.value,
+            fromDate: fromDate.value
+        })
+    }).then((res) => {
+        res.json()
+            .then((res) => {
+                reports = res;
+                renderReports(res);
             })
-        }).then((res) => {
-            res.json()
-                .then((res) => {
-                    reports = res;
-                    renderReports(res);
-                    resolve(res);
-                })
-        }).catch((err) => { rejecet(err) })
-    })
+    }).catch((err) => { console.log(err) })
 }
 
 function downloadReport(report) {
@@ -131,11 +134,10 @@ function downloadReport(report) {
             const a = document.createElement('a');
             // a.style.display = 'none';
             a.href = url;
-            a.download = report.machine+'_'+report.batchNo+'_'+report.date.date
+            a.download = report.machine + '_' + report.batchNo + '_' + report.date
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(url);
-            // alert('your file has downloaded!'); // or you know, something with better UX...
         })
         .catch(() => alert('oh no!'));
 }
@@ -143,7 +145,7 @@ function downloadReport(report) {
 // renderReports();
 
 window.onscroll = function () { myFunction() };
-// var tab = document.getElementById("nav");
+
 var sticky = tab.offsetTop;
 function myFunction() {
     if (window.pageYOffset >= sticky) {

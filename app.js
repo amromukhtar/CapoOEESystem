@@ -1,31 +1,38 @@
 const path = require('path');
 
+// const bcrypt = require('bcrypt');
+// bcrypt.hash('orma', 10).then((hashed) => {
+//     console.log(hashed)
+// })
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const mongoose = require('mongoose');
 
-const app = express();
+const router = require('./routes/main-routes');
+const constant = require('./data/constants');
 
+const Batch = require('./models/Batch');
+
+const batch1 = new Batch();
+const batch2 = new Batch();
+const batch3 = new Batch();
+const batch4 = new Batch();
+const batch5 = new Batch();
+const batch6 = new Batch();
+
+const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-const authRouter = require('./routes/auth');
-const adminRouter = require('./routes/admin');
-
-const Batch = require('./Models/Batch');
-const batch1 = new Batch();
-const batch2 = new Batch();
-const batch3 = new Batch();
-
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'capo oee system', saveUninitialized: false, resave: false }));
 
-app.use(adminRouter);
-app.use(authRouter);
+app.use(router);
 
 
 // let i = 0;
@@ -53,9 +60,10 @@ app.use(authRouter);
 //     }
 // }
 
-mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false')
+mongoose.connect('mongodb://localhost:27017/database')
     .then((result) => {
         console.log('Mongo DB Connected');
+        constant.getFactors();
     })
     .catch((err) => {
         console.log(err)
@@ -74,6 +82,9 @@ module.exports.sendData = (event, message) => {
 module.exports.batch1 = batch1;
 module.exports.batch2 = batch2;
 module.exports.batch3 = batch3;
+module.exports.batch4 = batch4;
+module.exports.batch5 = batch5;
+module.exports.batch6 = batch6;
 
 
 

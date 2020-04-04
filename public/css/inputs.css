@@ -116,7 +116,7 @@
     margin-left: 10px;
     border-radius: 5px;
     width: 60px;
-    height: 90px;
+    height: 65px;
 }
 
 .running-batch-form {
@@ -133,7 +133,7 @@
 
 .list-item {
     width: 90%;
-    height: 130px;
+    height: 85px;
     border-radius: 10px;
     background-color: white;
     /* border: 2px solid rgba(132, 229, 132, 0.719); */

@@ -1,6 +1,6 @@
 //action="/login" method="POST"
-const username = document.getElementById('username');
-const password = document.getElementById('password');
+// const username = document.getElementById('username');
+// const password = document.getElementById('password');
 
 (function ($) {
     "use strict";
@@ -20,25 +20,25 @@ const password = document.getElementById('password');
             }
         }
 
-        if (check == true) {
-            fetch("http://" + document.domain + ":3000/login", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: username.value,
-                    password: password.value,
-                })
-            }).then((res) => {
-                res.json()
-                    .then((authenticated) => {
-                        console.log(authenticated)
-                    })
-            }).catch((err) => { console.log(err) })
-        }
+        // if (check == true) {
+        //     fetch("http://" + document.domain + ":3000/login", {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             username: username.value,
+        //             password: password.value,
+        //         })
+        //     }).then((res) => {
+        //         res.json()
+        //             .then((authenticated) => {
+        //                 console.log(authenticated)
+        //             })
+        //     }).catch((err) => { console.log(err) })
+        // }
 
-        e.preventDefault();
+        // e.preventDefault();
         return check;
     });
 
