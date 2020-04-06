@@ -1,10 +1,5 @@
 const path = require('path');
 
-// const bcrypt = require('bcrypt');
-// bcrypt.hash('orma', 10).then((hashed) => {
-//     console.log(hashed)
-// })
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -60,14 +55,20 @@ app.use(router);
 //     }
 // }
 
-mongoose.connect('mongodb://localhost:27017/database')
-    .then((result) => {
-        console.log('Mongo DB Connected');
-        constant.getFactors();
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+mongoose.connect('mongodb://localhost/database', (result) => {
+    console.log('Mongo DB Connected');
+    constant.getFactors();
+});
+
+//Mongoose v5
+// .then((result) => {
+//     console.log('Mongo DB Connected');
+//     constant.getFactors();
+// })
+// .catch((err) => {
+//     console.log(err)
+// })
+
 const server = app.listen(3000);
 const io = require('socket.io')(server);
 

@@ -1,7 +1,7 @@
 const io = require('../app');
 
-const SerialPort = require('./node_modules/serialport');
-const Readline = require('./node_modules/@serialport/parser-readline');
+const SerialPort = require('serialport');
+const Readline = require('@serialport/parser-readline');
 const port = new SerialPort('COM11');
 const parser = port.pipe(new Readline({ delimiter: '\n' }));
 
@@ -160,13 +160,20 @@ module.exports = class Batch {
             performance: this.performance,
             supervisor: this.supervisor,
         })
-        batch.save()
-            .then((result) => {
-                console.log('Batch Added Successfully');
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        batch.save((err) => {
+            if (err) {
+                return console.log(err);
+            }
+            console.log('Batch Added Successfully');
+        })
+
+        //Mongoose V5
+        // .then((result) => {
+        //     console.log('Batch Added Successfully');
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
     }
     updateActualDownTime = () => {
         this.tempDownTime++;
