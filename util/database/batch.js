@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 batchSchema = new Schema({
+    fullDate: {
+        type: String,
+    },
     date: {
         type: String,
         required: true
@@ -24,7 +27,7 @@ batchSchema = new Schema({
         type: String,
         required: true
     },
-    productImageURL: {
+    imageURL: {
         type: String,
     },
     target: {
@@ -51,7 +54,7 @@ batchSchema = new Schema({
         type: String,
         // required: true
     },
-    cycleTime: {
+    cycleRate: {
         type: String,
         // required: true
     },

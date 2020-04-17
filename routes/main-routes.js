@@ -3,6 +3,7 @@ const router = experss.Router();
 
 const isAuth = require('../middleware/is-auth');
 
+// const { check } = require('express-validator/check');
 const authController = require('../controllers/auth')
 const inputsContoller = require('../controllers/inputs');
 const liveViewController = require('../controllers/live-view');

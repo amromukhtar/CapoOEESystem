@@ -16,10 +16,17 @@
             width: 100px;
             height: 50px;
         }
+
+        .container {
+            width: 100%;
+            height: 140%;
+            background-color: #f2f2f2;
+            opacity: 0.98;
+        }
     </style>
 </head>
 
-<body class="capo-background ">
+<body class="capo-background">
     <nav class="navbar navbar-default" style="margin: 0;">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -30,7 +37,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><%= username %></a></li>
+                    <li><a><%= username %></a></li>
                     <li class="logout">
                         <a href="#" id="logout">Logout</a>
                         <form id="logout-form" action="/logout" method="post"></form>
@@ -39,14 +46,14 @@
             </div>
         </div>
     </nav>
-    <div class="container col" style="display: flex; align-items: center;">
+    <div class="container centered col">
         <!-- <div class="col" style="width: 100%;"> -->
-        <table style="width: 100%; margin-top: 100px;">
+        <table style="width: 100%; margin: 15px 0;">
             <tr>
                 <td></td>
-                <td align="center" class="txt7">Terpko A</td>
-                <td align="center" class="txt7">Terpko B</td>
-                <td align="center" class="txt7">Terpko C</td>
+                <td align="center" class="txt7">Trepko A</td>
+                <td align="center" class="txt7">Trepko B</td>
+                <td align="center" class="txt7">Trepko C</td>
                 <td align="center" class="txt7">Erca A</td>
                 <td align="center" class="txt7">Erca B</td>
                 <td align="center" class="txt7">NovaPak</td>
@@ -69,25 +76,141 @@
                 <td>Sec</td>
             </tr>
             <tr>
-                <td>Cycle Time</td>
-                <td align="center"><input class="table-element input-1 input100" type="text" id="ct-A"
-                        value="<%= cycleTime[0]%>"></td>
-                <td align="center"><input class="table-element input-1 input100" type="text" id="ct-B"
-                        value="<%= cycleTime[1]%>"></td>
-                <td align="center"><input class="table-element input-1 input100" type="text" id="ct-C"
-                        value="<%= cycleTime[2]%>"></td>
-                <td align="center"><input class="table-element input-1 input100" type="text" id="cte-A"
-                        value="<%= cycleTime[3]%>"></td>
-                <td align="center"><input class="table-element input-1 input100" type="text" id="cte-B"
-                        value="<%= cycleTime[4]%>"></td>
-                <td align="center"><input class="table-element input-1 input100" type="text" id="ctn-P"
-                        value="<%= cycleTime[5]%>"></td>
+                <td>Natural</td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_A" type="text"
+                        value="<%= icrTrepko_A[0]%>"></td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_B" type="text"
+                        value="<%= icrTrepko_B[0]%>">
+                </td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_C" type="text"
+                        value="<%= icrTrepko_C[0]%>">
+                </td>
+                <td align="center"><input class="table-element input-1 input100 icrErca_A" type="text"
+                        value="<%= icrErca_A[0]%>">
+                </td>
+                <td align="center"><input class="table-element input-1 input100 icrErca_B" type="text"
+                        value="<%= icrErca_B[0]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td>Cycle/min</td>
+            </tr>
+            <tr>
+                <td>Set</td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_A" type="text"
+                        value="<%= icrTrepko_A[1]%>"></td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_B" type="text"
+                        value="<%= icrTrepko_B[1]%>">
+                </td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_C" type="text"
+                        value="<%= icrTrepko_C[1]%>">
+                </td>
+                <td align="center"><input class="table-element input-1 input100 icrErca_A" type="text"
+                        value="<%= icrErca_A[1]%>">
+                </td>
+                <td align="center"><input class="table-element input-1 input100 icrErca_B" type="text"
+                        value="<%= icrErca_B[1]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="- " disabled></td>
+                <td>Cycle/min</td>
+            </tr>
+            <tr>
+                <td>Delights Custard</td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_A" type="text"
+                        value="<%= icrTrepko_A[2]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled> </td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled> </td>
+                <td align="center"><input class="table-element input-1 input100 icrErca_B" type="text"
+                        value="<%= icrErca_B[2]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled> </td>
+                <td>Cycle/min</td>
+            </tr>
+            <tr>
+                <td>Delights Chocolate</td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_A" type="text"
+                        value="<%= icrTrepko_A[3]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled> </td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled> </td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100 icrErca_B" type="text"
+                        value="<%= icrErca_B[3]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td>Cycle/min</td>
+            </tr>
+            <tr>
+                <td>Millet Madida</td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_A" type="text"
+                        value="<%= icrTrepko_A[4]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td>Cycle/min</td>
+            </tr>
+            <tr>
+                <td>Hilba Madida</td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_A" type="text"
+                        value="<%= icrTrepko_A[5]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td>Cycle/min</td>
+            </tr>
+            <tr>
+                <td>Date & Millet Madida</td>
+                <td align="center"><input class="table-element input-1 input100 icrTrepko_A" type="text"
+                        value="<%= icrTrepko_A[6]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled> </td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td>Cycle/min</td>
+            </tr>
+            <tr>
+                <td>Flavor</td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled> </td>
+                <td align="center"><input class="table-element input-1 input100 icrErca_A" type="text"
+                        value="<%= icrErca_A[2]%>">
+                </td>
+                <td align="center"><input class="table-element input-1 input100 icrErca_B" type="text"
+                        value="<%= icrErca_A[4]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled>
+                </td>
+                <td>Cycle/min</td>
+            </tr>
+            <tr>
+                <td>Fruit</td>
+                <td align="center"><input class="table-element input-1 input100 " type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100 " type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100 " type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100 " type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100 icrErca_B" type="text"
+                        value="<%= icrErca_A[5]%>"></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td>Cycle/min</td>
+            </tr>
+            <tr>
+                <td>Mesh</td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100" type="text" value="-" disabled></td>
+                <td align="center"><input class="table-element input-1 input100 icrNovaPak" type="text"
+                        value="<%= icrNovaPak[0]%>">
+                </td>
                 <td>Cycle/min</td>
             </tr>
         </table>
-        <button class="login100-form-btn m-t-40 m-l-90 submit-btn">
-            Submit
-        </button>
+        <div class="centered flex-c-m m-t-20">
+            <button class="login100-form-btn submit-btn">
+                Submit
+            </button>
+        </div>
         <!-- </div> -->
     </div>
     <script src="js/settings.js"></script>

@@ -23,7 +23,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><%= username %></a></li>
+                    <li><a><%= username %></a></li>
                     <li class="logout">
                         <a href="#" id="logout">Logout</a>
                         <form id="logout-form" action="/logout" method="post"></form>
@@ -41,6 +41,7 @@
                 </div>
             </button>
         </form>
+        <% if (authority == "admin" || authority == "supervisor") { %>
         <form action="/set-inputs">
             <button class="main-btn m-r-50" type="submit">
                 <div class="col flex-c-m">
@@ -49,6 +50,8 @@
                 </div>
             </button>
         </form>
+        <% } %>
+        <% if (authority == "admin" || authority == "supervisor" || authority == "opreater") { %>
         <form action="/reports">
             <button class="main-btn m-r-50">
                 <div class="col flex-c-m">
@@ -57,6 +60,7 @@
                 </div>
             </button>
         </form>
+        <% } %>
         <% if (authority == "admin") { %>
         <form action="/settings">
             <button class="main-btn m-r-50">

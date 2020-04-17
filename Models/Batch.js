@@ -1,15 +1,7 @@
 const io = require('../app');
-
-const SerialPort = require('serialport');
-const Readline = require('@serialport/parser-readline');
-const port = new SerialPort('COM11');
-const parser = port.pipe(new Readline({ delimiter: '\n' }));
-
+const { machine, machine_id, batchName, product, image, getProductNo } = require('../data/data');
 const BatchDB = require('../util/database/batch');
 
-const machine = ['Terpko A', 'Terpko B', 'Terpko C', 'Erca A', 'Erca B', 'NovaPak'];
-const product = ['Set', 'Natural', 'Delights Custard', 'Delights Chocolate', 'Hilba Madida', 'Millet Madida', 'Date & Millet Madida'];
-const batchName = ['batch1', 'batch2', 'batch3', 'batch4', 'batch5', 'batch6'];
 
 module.exports = class Batch {
     constructor() {
@@ -19,28 +11,36 @@ module.exports = class Batch {
     }
 
     setBatchValues(parameters, id) {
+        // Starting Time
+        const date = new Date();
+        this.startTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
         this.supervisor = parameters.supervisor;
         this.batchNo = parameters.batchNo;
         this.batchName = batchName[parameters.machine];
         this.machineNo = parameters.machine;
         this.machine = machine[parameters.machine];
         this.productNo = parameters.product
-        this.product = product[parameters.product];
+        this.product = product[machine_id[parameters.machine]][parameters.product];
+        this.imageURL = "/images/products/" + image[machine_id[parameters.machine]][parameters.product] + ".png";
         this.target = parameters.target;
         this.actualCount = 0;
         this.ppt = parameters.ppt;
         this.pst = parameters.pst;
+        this.totalTime = 0;
         this.date = parameters.date;
         this.tempDownTime = 0;
-        this.actualDownTime = 10;
+        this.actualDownTime = 0;
         this.perDefinedDownTime = global.downTime[parameters.machine];
-        this.cycleTime = global.cycleTime[parameters.machine]
         this.startingTime = new Date().getTime();
         this.status = 'RUNNING';
         this.liveStatus = 'RUNNING';
         this.running = true;
 
-        this.getSensorsData();
+
+        // Setting Ideal Cycle Rate
+        this.cycleRate = global.idealCycleRate[machine_id[this.machineNo]][getProductNo(this.machineNo, this.productNo)];
+
         // close Previous Timers
         try {
             clearInterval(id)
@@ -52,12 +52,13 @@ module.exports = class Batch {
     updateBatch = () => {
         const id = setInterval(() => {
             if (this.status === 'RUNNING') {
-                this.updateActualDownTime();
+                this.updateParameters();
                 io.sendData(this.batchName, {
                     batchNo: this.batchNo,
                     machine: this.machine,
                     machineNo: this.machineNo,
                     product: this.product,
+                    imageURL: this.imageURL,
                     date: this.date,
                     target: this.target,
                     actual: this.actualCount,
@@ -74,35 +75,27 @@ module.exports = class Batch {
                     machine: this.machine,
                     machineNo: this.machineNo,
                     product: this.product,
+                    imageURL: this.imageURL,
                     date: this.date,
-                    oee: this.oee,
-                    quality: this.quality,
-                    availability: this.availability,
-                    performance: this.performance,
+                    oee: this.oeeString,
+                    quality: this.qualityString,
+                    availability: this.availabilityString,
+                    performance: this.performanceString,
                     running: this.running,
                     status: this.status,
                     liveStatus: this.liveStatus,
                 });
             }
         }, 1000);
-        // console.log(CircularJSON.stringify(id))
-        // const this.startBatchId = id;
         return id;
-    }
-
-    getSensorsData = () => {
-        parser.on('data', (data) => {
-            if (Number(this.machineNo) == data) {
-                this.actualCount++;
-                this.tempDownTime = 0;
-            }
-        })
     }
 
     endBatch = () => {
         // Getting last batch parameters
-        this.endingTime = new Date().getTime();
-        this.calculateResults();
+        const date = new Date();
+        this.endTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+        this.getOEE();
         this.liveStatus = "FINISHED";
 
         // Saving Batch in DB
@@ -116,48 +109,42 @@ module.exports = class Batch {
         this.running = true;
     }
 
-
-    // CALCULATIONS
-    getMeff = () => {
-        return '90 %';
-    }
-
-    calculateResults = () => {
-        this.actualDownTimeMin = String(Math.floor(this.actualDownTime / 60) + ' min');
-        this.runTime = String(Number(this.ppt) - Number(this.pst) + ' min');
-        this.totalTime = String(Number(this.ppt) + Number(this.pst) + ' min');
-        this.pptString = this.ppt + ' min';
-        this.pstString = this.pst + ' min';
-        this.cycleTimeString = this.cycleTime + ' Cycles/min'
-        this.quality = "100 %";
-        this.availability = "90 %";
-        this.performance = "89 %";
-        this.oee = "90 %";
-
-    }
     // UTILS
+
+    getSensorsData = () => {
+        this.actualCount++;
+        this.tempDownTime = 0;
+
+        if (this.actualCount == this.target) {
+            this.status = 'FINISHED';
+            this.endBatch();
+        }
+
+    }
 
     addBatch = () => {
         const batch = new BatchDB({
+            fullDate: new Date(),
             date: this.date,
             startTime: this.startTime,
             endTime: this.endTime,
             batchNo: this.batchNo,
             machine: this.machine,
             product: this.product,
+            imageURL: this.imageURL,
             target: this.target,
             actual: this.actualCount,
             ppt: this.pptString,
             pst: this.pstString,
-            runTime: this.runTime,
-            totalTime: this.totalTime,
-            meff: this.getMeff(),
+            runTime: this.runTimeString,
+            totalTime: this.totalTimeString,
             downTime: this.actualDownTimeMin,
-            cycleTime: this.cycleTimeString,
-            oee: this.oee,
-            quality: this.quality,
-            availability: this.availability,
-            performance: this.performance,
+            cycleRate: this.cycleRateString,
+            meff: this.getMeff(),
+            oee: this.oeeString,
+            quality: this.qualityString,
+            availability: this.availabilityString,
+            performance: this.performanceString,
             supervisor: this.supervisor,
         })
         batch.save((err) => {
@@ -167,7 +154,7 @@ module.exports = class Batch {
             console.log('Batch Added Successfully');
         })
 
-        //Mongoose V5
+        // Mongoose V5
         // .then((result) => {
         //     console.log('Batch Added Successfully');
         // })
@@ -175,10 +162,13 @@ module.exports = class Batch {
         //     console.log(err)
         // })
     }
-    updateActualDownTime = () => {
-        this.tempDownTime++;
-        // this.actualCount++;
 
+    updateParameters = () => {
+        // Batch Timer
+        this.totalTime++;
+
+        // Downtime Calculation
+        this.tempDownTime++;
         this.liveStatus = "RUNNING";
         if (this.tempDownTime > this.perDefinedDownTime) {
             this.actualDownTime++;
@@ -188,6 +178,45 @@ module.exports = class Batch {
 
     getDownTime = () => {
         return new Date(this.actualDownTime * 1000).toISOString().substr(11, 8);
+    }
+
+    getMeff = () => {
+        const meff = (this.totalTime / (this.totalTime + this.actualDownTime)) * 100;
+        return String(meff.toFixed(0)) + " %";
+    }
+
+    getOEE = () => {
+
+        // Run Time = Planned Producation Time - Downtime in min
+        // Math.floor(this.totalTime / 60)
+        this.totalTimeMin = Number(this.totalTime) / 60;
+        this.runTime = this.totalTimeMin - (Number(this.actualDownTime) / 60);
+
+        // Availability = Run Time / Planned Producation Time
+        this.availability = this.runTime / this.totalTimeMin;
+
+        // Performanace = (Total Counts / Run Time) / Ideal Cycle Time Rate
+        this.performance = (this.actualCount / this.runTime) / this.cycleRate;
+
+        // Quality = 
+        this.quality = 100;
+
+        // OEE = A * P * Q
+        this.oee = this.availability * this.performance;
+
+        // For Sending As String 
+        // All values should be in min
+        this.actualDownTimeMin = String(Math.floor(this.actualDownTime / 60) + ' min');
+        this.runTimeString = String(Math.floor(this.runTime) + ' min');
+        this.totalTimeString = String(Math.floor(this.totalTimeMin) + ' min');
+        this.pptString = this.ppt + ' min';
+        this.pstString = this.pst + ' min';
+        this.cycleRateString = this.cycleRate + ' Cycles/min'
+        this.qualityString = "100 %";
+        this.availabilityString = String(this.availability.toFixed(3) * 100).slice(0, 3) + " %";
+        this.performanceString = String(this.performance.toFixed(3) * 100).slice(0, 3) + " %";
+        this.oeeString = String(this.oee.toFixed(3) * 100).slice(0, 3) + " %";
+
     }
 
 

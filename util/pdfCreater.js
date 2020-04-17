@@ -4,6 +4,9 @@ const PDFDocument = require('pdfkit');
 exports.createReport = (report) => {
 
     const pdf = new PDFDocument();
+    const target = +report.target.split(" ")[0];
+    const actual = +report.actual.split(" ")[0];
+    const tarActRatio = (actual / target).toFixed(2) * 100;
     //External Box
     drawLine(pdf, 40, 50, 560, 50, 1);
     drawLine(pdf, 40, 730, 560, 730, 1);
@@ -62,7 +65,7 @@ exports.createReport = (report) => {
     pdf.fontSize(14).text(`${report.actual}`, 320, 381);
     //
     pdf.fontSize(14).text(`%Target-Actual`, 70, 404);
-    pdf.fontSize(14).text(`${'100%'}`, 320, 404);
+    pdf.fontSize(14).text(`${tarActRatio} %`, 320, 404);
     pdf.fontSize(14).text(`Planned Production Time`, 70, 427);
     pdf.fontSize(14).text(`${report.ppt}`, 320, 427);
     pdf.fontSize(14).text(`Planned Stop Time`, 70, 450);
@@ -74,7 +77,7 @@ exports.createReport = (report) => {
     pdf.fontSize(14).text(`${report.downTime}`, 320, 496);
     //
     pdf.fontSize(14).text(`Cycle Time`, 70, 519);
-    pdf.fontSize(14).text(`${report.cycleTime}`, 320, 519);
+    pdf.fontSize(14).text(`${report.cycleRate}`, 320, 519);
     pdf.fontSize(14).text(`% Quality`, 70, 542);
     pdf.fontSize(14).text(`${report.quality}`, 320, 542);
     pdf.fontSize(14).text(`% Performance`, 70, 565);

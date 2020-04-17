@@ -6,7 +6,7 @@ exports.setInputs = (req, res, next) => {
     res.render('inputs', {
         isLoggedIn: req.session.isLoggedIn,
         authority: req.session.authority,
-        username: req.session.user,
+        username: req.session.name,
         batch: JSON.stringify([
             batch.batch1,
             batch.batch2,
@@ -23,7 +23,7 @@ exports.setInputs = (req, res, next) => {
 exports.postInputs = (req, res, next) => {
 
     const paramters = req.body;
-    paramters.supervisor = req.session.user;
+    paramters.supervisor = req.session.name;
     if (paramters.status == 'starting') {
 
         if (paramters.machine == '0' && batch.batch1.status == 'FINISHED') {

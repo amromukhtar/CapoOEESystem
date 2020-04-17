@@ -32,14 +32,15 @@
 <body>
 
 	<div class="limiter">
-		<div class="container-login100">
-			<div style="width: 500px; height: 540px;" class="wrap-login100 p-l-85 p-r-85 p-t-15 p-b-25">
+		<div class="container-login100" style="background-color: rgba(196, 192, 188, 0.521);">
+			<div style="width: 500px; height: 540px; box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+				class="wrap-login100 p-l-85 p-r-85 p-t-15 p-b-25">
 				<form action="/login" method="POST" class="login100-form validate-form flex-sb flex-w">
 					<img class="m-l-40" src="/images/capoo.jpg" alt="" width="250" height="160">
 					<span class="m-l-30 login100-form-title p-b-22">
 						Capo OEE System
 					</span>
-					<span class="txt1 p-b-11">
+					<span class="txt1 p-b-11" id="username">
 						Username
 					</span>
 					<div class="wrap-input100 validate-input m-b-36 " data-validate="Username is required">
@@ -47,7 +48,7 @@
 						<span class="focus-input100"></span>
 					</div>
 
-					<span class="txt1 p-b-11">
+					<span class="txt1 p-b-11" id="password">
 						Password
 					</span>
 					<div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
@@ -62,7 +63,7 @@
 							Login
 						</button>
 					</div>
-
+					<input type="text" id="error" value="<%=error%>" style="display: none;">
 				</form>
 			</div>
 		</div>

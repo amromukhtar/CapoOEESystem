@@ -6,20 +6,21 @@ exports.getReports = (req, res, next) => {
     res.render('reports', {
         isLoggedIn: req.session.isLoggedIn,
         authority: req.session.authority,
-        username: req.session.user,
+        username: req.session.name,
     });
 }
+
 
 // API Handling 
 exports.getMachineReports = (req, res, next) => {
     const search = req.body;
-    // console.log(req.body)
     batches.find({
         machine: search.machine,
         date: { "$gte": search.fromDate, "$lte": search.toDate }
     })
         .then((batches) => {
-            res.status(200).send(JSON.stringify(batches));
+            // const sortedBatches = batches.sort((a, b) => (a.fullDate.valueOf() < b.fullDate.valueOf()) ? 1 : -1);
+            res.status(200).send(JSON.stringify(batches.reverse()));
         })
         .catch((err) => {
             console.log(err);

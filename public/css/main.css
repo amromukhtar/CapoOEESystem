@@ -227,17 +227,19 @@ iframe {
 }
 
 .txt7 {
-  font-family: sans-serif;
-  font-size: 30px;
+  font-family: Raleway-SemiBold;
+  font-size: 20px;
   color: rgb(44, 42, 42);
   line-height: 1.2;
   /* text-transform: uppercase; */
 }
 
 .txt8 {
-  font-family: Raleway-SemiBold;
-  font-size: 27px;
-  color: black;
+  font-family: Verdana;
+  font-size: 28px;
+  font-weight: 900;
+  text-align: center;
+  color: white;
   line-height: 1.5;
   /* text-transform: uppercase; */
 }
@@ -590,6 +592,7 @@ iframe {
   background-color: #333333;
   /* background-color: rgb(222, 192, 135); */
   border-radius: 27px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;

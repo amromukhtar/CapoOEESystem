@@ -3,12 +3,14 @@ const socket = io({ transports: ['websocket'], upgrade: false });
 const table = document.querySelector('.table');
 const navBar = document.querySelector('.nav-bar');
 const loader = document.querySelector('.loader');
-const liveStatus = document.getElementById('status');
+const container = document.getElementById('container')
+// const liveStatus = document.getElementById('status');
 
 // const runningBatches = JSON.parse(document.getElementById('runningBatches').value);
 const batchNo = document.getElementById('batchNo');
 const machine = document.getElementById('machine');
 const product = document.getElementById('product');
+const image = document.getElementById('image');
 const date = document.getElementById('date');
 
 
@@ -45,7 +47,7 @@ const runBatches = () => {
     batchParameters.map((batch, index) => {
         if (batch.running == true) {
             workingBatchIndex.push(Number(batchParameters[index].machineNo));
-            // console.log('element', batch, index);
+            console.log('element', batch, index);
         }
     })
     return workingBatchIndex.length;
@@ -61,49 +63,49 @@ const updateIndex = () => {
     }, 10000);
 }
 
+const values = () => {
+
+    let parameters = batchParameters[workingBatchIndex[index]];
+    image.src = parameters.imageURL;
+    batchNo.textContent = `Batch No.: ${parameters.batchNo}`;
+    machine.textContent = `Machine: ${parameters.machine}`;
+    product.textContent = `Product: ${parameters.product}`;
+    date.textContent = `Date: ${parameters.date}`;
+
+    if (parameters.status === 'RUNNING') {
+        label1.textContent = 'TARGET';
+        label2.textContent = 'ACTUAL';
+        label3.textContent = 'M.EFF';
+        label4.textContent = 'DOWNTIME';
+
+        field1.textContent = parameters.target;
+        field2.textContent = parameters.actual;
+        field3.textContent = parameters.mEff;
+        field4.textContent = parameters.downTime;
+
+        if (parameters.liveStatus == 'RUNNING')
+            navBar.style.backgroundColor = '#57b846';
+        else
+            navBar.style.backgroundColor = '#fc0303';
+    }
+    else if (parameters.status === 'FINISHED') {
+        label1.textContent = 'OEE';
+        label2.textContent = 'QUALITY';
+        label3.textContent = 'AVAILABLITY';
+        label4.textContent = 'PERFORMANCE';
+
+        field1.textContent = parameters.oee;
+        field2.textContent = parameters.quality;
+        field3.textContent = parameters.availability;
+        field4.textContent = parameters.performance;
+
+        navBar.style.backgroundColor = 'cadetblue';
+    }
+}
 const updateValues = () => {
+    values();
     setInterval(() => {
-        let parameters = batchParameters[workingBatchIndex[index]];
-        batchNo.textContent = `Batch No.: ${parameters.batchNo}`;
-        machine.textContent = `Machine Name: ${parameters.machine}`;
-        product.textContent = `Product Name: ${parameters.product}`;
-        date.textContent = `Date: ${parameters.date}`;
-
-        if (parameters.status === 'RUNNING') {
-            label1.textContent = 'TARGET';
-            label2.textContent = 'ACTUAL';
-            label3.textContent = 'M.EFF';
-            label4.textContent = 'DOWN TIME';
-
-            field1.textContent = parameters.target;
-            field2.textContent = parameters.actual;
-            field3.textContent = parameters.mEff;
-            field4.textContent = parameters.downTime;
-
-            // field5.style.display = 'table';
-            // field5.textContent = parameters.liveStatus;
-            // console.log('display', field5.style.display)
-            if (parameters.liveStatus == 'RUNNING')
-                liveStatus.style.backgroundColor = '#0cf500'
-            else
-                liveStatus.style.backgroundColor = '#fc0303'
-        }
-        else if (parameters.status === 'FINISHED') {
-            label1.textContent = 'OEE';
-            label2.textContent = 'QUALITY';
-            label3.textContent = 'AVAILABLITY';
-            label4.textContent = 'PERFORMANCE';
-
-            field1.textContent = parameters.oee;
-            field2.textContent = parameters.quality;
-            field3.textContent = parameters.availability;
-            field4.textContent = parameters.performance;
-            field5.textContent = parameters.liveStatus;
-
-            liveStatus.style.backgroundColor = '#0cf500'
-            // field5.style.display = 'none';
-            // label5.style.display = 'none';
-        }
+        values();
     }, 1000);
 }
 
@@ -115,4 +117,6 @@ setTimeout(() => {
     loader.style.display = 'none';
     navBar.style.display = 'flex';
     table.style.display = 'table';
+    container.className = container.className.replace(" flex-c-m", "")
+    console.log('HERR')
 }, 3000);

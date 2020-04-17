@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 
 const constant = new Schema({
     type: String,
-    downTime: [],
-    cycleTime: [],
+    downTime: Array,
+    idealCycleRate: Object,
 })
 
 module.exports = mongoose.model('Constant', constant);

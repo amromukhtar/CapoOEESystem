@@ -1,21 +1,26 @@
 const User = require('../Models/User');
-// const bcrypt = require('bcrypt');
+
 const crypt = require('../util/encrypt');
 
 exports.getLogin = (req, res, next) => {
-    res.render('login');
+    res.render('login', {
+        error: false
+    });
 }
 
 exports.postLogin = (req, res, next) => {
-    const username = req.body.username;
+    const user = req.body.username;
     const password = crypt.encrypt(req.body.password);
-    User.findOne({ name: username, password: password })
+    User.findOne({ user: user, password: password })
         .then((user) => {
             if (!user) {
-                return res.redirect('/');
+                return res.render('login', {
+                    error: true
+                });
             } else {
                 req.session.isLoggedIn = true;
-                req.session.user = user.name;
+                req.session.user = user.user;
+                req.session.name = user.name;
                 req.session.authority = user.authority;
                 req.session.save((result) => {
                     res.redirect('/index');
@@ -48,6 +53,6 @@ exports.index = (req, res, next) => {
     res.render('index', {
         isLoggedIn: req.session.isLoggedIn,
         authority: req.session.authority,
-        username: req.session.user,
+        username: req.session.name,
     });
 }

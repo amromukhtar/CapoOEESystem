@@ -1,6 +1,7 @@
 //action="/login" method="POST"
-// const username = document.getElementById('username');
-// const password = document.getElementById('password');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const error = document.getElementById('error');
 
 (function ($) {
     "use strict";
@@ -9,6 +10,11 @@
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
+    console.log(error.value)
+    if (error.value == 'true') {
+        username.style.color = '#fc0303';
+        password.style.color = '#fc0303';
+    }
 
     $('.validate-form').on('submit', function (e) {
         var check = true;
@@ -18,6 +24,9 @@
                 showValidate(input[i]);
                 check = false;
             }
+            error.value = 'false'
+            username.style.color = '#555555';
+            password.style.color = '#555555';
         }
 
         // if (check == true) {
@@ -64,7 +73,6 @@
 
     function showValidate(input) {
         var thisAlert = $(input).parent();
-
         $(thisAlert).addClass('alert-validate');
     }
 

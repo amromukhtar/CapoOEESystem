@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const router = require('./routes/main-routes');
 const constant = require('./data/constants');
 
+const serial = require('./util/serialData');
 const Batch = require('./Models/Batch');
 
 const batch1 = new Batch();
@@ -16,6 +17,8 @@ const batch3 = new Batch();
 const batch4 = new Batch();
 const batch5 = new Batch();
 const batch6 = new Batch();
+
+serial.handleSensorsData();
 
 const app = express();
 
@@ -28,32 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'capo oee system', saveUninitialized: false, resave: false }));
 
 app.use(router);
-
-
-// let i = 0;
-// const server = ws.createServer(function(conn) {
-//     console.log("New connection")
-
-//     conn.on("text", function(str) {
-//         console.log("Received " + str)
-//         conn.sendText(str.toUpperCase() + "!!!")
-//     })
-//     conn.on("close", function(code, reason) {
-//         console.log("Connection closed", code, reason)
-//     })
-// }).listen(3000);
-
-// setInterval(() => { broadcast(server, String(i++)) }, 1000);
-
-// function broadcast(server, msg) {
-//     try {
-//         server.connections.forEach(function(conn) {
-//             conn.sendText(msg)
-//         })
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
 
 mongoose.connect('mongodb://localhost/database', (result) => {
     console.log('Mongo DB Connected');
@@ -79,6 +56,16 @@ io.on('connection', socket => {
 module.exports.sendData = (event, message) => {
     io.sockets.emit(event, message);
 }
+
+// global.downTime = [10, 10, 10, 10, 10, 10];
+// global.idealCycleRate = {
+//     Trepko_A: [180, 138, 138, 138, 138, 138, 138],
+//     Trepko_B: [100, 72],
+//     Trepko_C: [50, 50],
+//     Erca_A: [300, 300, 360],
+//     Erca_B: [300, 300, 300, 300, 360, 300],
+//     NovaPak: [28],
+// };
 
 module.exports.batch1 = batch1;
 module.exports.batch2 = batch2;

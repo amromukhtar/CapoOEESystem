@@ -8,7 +8,7 @@ let reports = [];
 
 // Initilization
 ////////////////////////////////////////////////////
-let machineName = 'Terpko A';
+let machineName = 'Trepko A';
 fromDate.value = moment().format('YYYY-MM-DD');
 toDate.value = moment().format('YYYY-MM-DD');
 fetchRequest(machineName);
@@ -41,6 +41,17 @@ const renderReports = (reports) => {
         reportsList.appendChild(text);
     } else {
         reports.map((report, index) => {
+            const oee = +report.oee.split(" ")[0];
+            let cardColor = 'blanchedalmond';
+
+            if (oee > 80) {
+                cardColor = 'aquamarine';
+            } else if (oee > 60 & oee < 50) {
+                cardColor = 'blanchedalmond';
+            } else {
+                cardColor = '#FF715E';
+            }
+
             const reportItem = document.createElement('li');
             reportItem.className = "report-item row";
             reportItem.innerHTML = `
@@ -49,15 +60,15 @@ const renderReports = (reports) => {
             <img src="/images/icons/download.png" class="download" id="${index}" >
             </div>
             <div class="flex-c-m col" style="flex-basis: 90% background-color:white; margin-top:10px;">
-                <img src="/images/capo-milk.jpg" width="140px" height="140px">
+                <img src="${report.imageURL}" width="140px" height="140px">
                 <p class="txt7 m-t-10">Batch No</p>
                 <p class="txt7">${report.batchNo}</p>
             </div>
             </div>
-            <div class="col" style="flex-basis: 200%; background-color: aquamarine;">
+            <div class="col" style="flex-basis: 200%; background-color: ${cardColor};">
                 <div class="row" style="flex-basis: 65%; padding: 15px;">
                     <div
-                        style="flex-basis: 100%;padding: 15px;margin-left: 25px;  display: flex; flex-direction: column;justify-content: space-around; border-right: 1px solid rgb(114, 100, 100);">
+                        style="flex-basis: 100%;margin-left: 25px;  display: flex; flex-direction: column;justify-content: space-around; border-right: 1px solid rgb(114, 100, 100);">
                             <p class="txt2">Target : ${report.target}</p>
                             <p class="txt2">Actual : ${report.actual}</p>
                             <p class="txt2">M.Eff : ${report.meff}</p>
@@ -74,8 +85,8 @@ const renderReports = (reports) => {
                 </div>
                 <div
                     style="flex-basis: 35%; display: flex;align-items: center; flex-direction: column;justify-content: space-around; ">
-                    <p class="txt2">Date ${report.date} at 12:12:00 To 16:12:00</p>
-                    <p class="txt2">PPT 01:50:00 PST 00:10:00</p>
+                    <p class="txt2">Date ${report.date} at ${report.startTime} To ${report.endTime}</p>
+                    <p class="txt2">PPT ${report.ppt} PST ${report.pst}</p>
                     <p class="txt2">Supervisor : ${report.supervisor} </p>
                 </div>
             </div>
