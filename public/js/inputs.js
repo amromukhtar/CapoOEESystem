@@ -166,7 +166,7 @@ renderRunningBatches = (batch) => {
                 li.innerHTML = `
         <div class="row" id=${batch.machineNo}>
             <div class="m-t-10" style="width:180px">
-              <p class="txt-input-form">${'Batch No: ' + batch.batchNo}</p>
+              <p class="txt-input-form">${batch.batchNo}</p>
               </br>
               <p class="txt-input-form" name="machine">${'Machine: ' + batch.machine}</p>
               </br>

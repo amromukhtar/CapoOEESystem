@@ -85,8 +85,8 @@ const renderReports = (reports) => {
                 </div>
                 <div
                     style="flex-basis: 35%; display: flex;align-items: center; flex-direction: column;justify-content: space-around; ">
-                    <p class="txt2">Date ${report.date} at ${report.startTime} To ${report.endTime}</p>
-                    <p class="txt2">PPT ${report.ppt} PST ${report.pst}</p>
+                    <p class="txt2">Date: ${report.date} at ${report.startTime} To ${report.endTime}</p>
+                    <p class="txt2">BTT: ${report.totalTime}   PPT: ${report.ppt}   PST: ${report.pst}</p>
                     <p class="txt2">Supervisor : ${report.supervisor} </p>
                 </div>
             </div>

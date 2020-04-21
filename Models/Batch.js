@@ -12,8 +12,7 @@ module.exports = class Batch {
 
     setBatchValues(parameters, id) {
         // Starting Time
-        const date = new Date();
-        this.startTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        this.startTime = this.getTime();
 
         this.supervisor = parameters.supervisor;
         this.batchNo = parameters.batchNo;
@@ -77,10 +76,10 @@ module.exports = class Batch {
                     product: this.product,
                     imageURL: this.imageURL,
                     date: this.date,
-                    oee: this.oeeString,
+                    oee: String((this.oee * 100).toFixed(0)) + " %",
                     quality: this.qualityString,
-                    availability: this.availabilityString,
-                    performance: this.performanceString,
+                    availability: String((this.availability * 100).toFixed(0)) + " %",
+                    performance: String((this.performance * 100).toFixed(0)) + " %",
                     running: this.running,
                     status: this.status,
                     liveStatus: this.liveStatus,
@@ -92,8 +91,7 @@ module.exports = class Batch {
 
     endBatch = () => {
         // Getting last batch parameters
-        const date = new Date();
-        this.endTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        this.endTime = this.getTime();
 
         this.getOEE();
         this.liveStatus = "FINISHED";
@@ -185,6 +183,12 @@ module.exports = class Batch {
         return String(meff.toFixed(0)) + " %";
     }
 
+    getTime = () => {
+        const date = new Date();
+        const time = (+date.getHours() == 23 ? 0 : +date.getHours() + 1) + ":" + date.getMinutes() + ":" + date.getSeconds();
+        return time;
+    }
+
     getOEE = () => {
 
         // Run Time = Planned Producation Time - Downtime in min
@@ -213,9 +217,9 @@ module.exports = class Batch {
         this.pstString = this.pst + ' min';
         this.cycleRateString = this.cycleRate + ' Cycles/min'
         this.qualityString = "100 %";
-        this.availabilityString = String(this.availability.toFixed(3) * 100).slice(0, 3) + " %";
-        this.performanceString = String(this.performance.toFixed(3) * 100).slice(0, 3) + " %";
-        this.oeeString = String(this.oee.toFixed(3) * 100).slice(0, 3) + " %";
+        this.availabilityString = String(this.availability.toFixed(3) * 100).slice(0, 4) + " %";
+        this.performanceString = String(this.performance.toFixed(3) * 100).slice(0, 4) + " %";
+        this.oeeString = String(this.oee.toFixed(3) * 100).slice(0, 4) + " %";
 
     }
 

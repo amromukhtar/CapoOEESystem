@@ -25,7 +25,6 @@
         .nav-bar .section {
             display: flex;
             flex-flow: column;
-            flex-basis: 33%;
             justify-content: space-around;
             align-items: center;
         }
@@ -76,14 +75,14 @@
 
     <div class="live-view-container flex-c-m" id="container">
         <div class="nav-bar" style="display: none;" id="status">
-            <div class="section">
-                <p class="txt8" id="machine">Machine: </p>
-                <p class="txt8" id="product">Product: </p>
+            <div class="section" style="flex-basis: 40%;">
+                <p class="txt8" id="machine"></p>
+                <p class="txt8" id="product"></p>
             </div>
-            <div class="section">
+            <div class="section" style="flex-basis: 20%;">
                 <img id="image" alt="" width="130" height="130">
             </div>
-            <div class="section">
+            <div class="section" style="flex-basis: 40%;">
                 <p class="txt8" id="batchNo">Batch No: </p>
                 <p class="txt8" id="date">Date: </p>
             </div>

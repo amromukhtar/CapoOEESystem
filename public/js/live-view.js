@@ -118,5 +118,4 @@ setTimeout(() => {
     navBar.style.display = 'flex';
     table.style.display = 'table';
     container.className = container.className.replace(" flex-c-m", "")
-    console.log('HERR')
 }, 3000);
