@@ -32,7 +32,8 @@ app.use(session({ secret: 'capo oee system', saveUninitialized: false, resave: f
 
 app.use(router);
 
-mongoose.connect('mongodb://localhost/database', (result) => {
+const opts = { server: { auto_reconnect: true } }
+mongoose.connect('mongodb://localhost/database', opts, (result) => {
     console.log('Mongo DB Connected');
     constant.getFactors();
 });
