@@ -9,6 +9,7 @@ exports.liveView = (req, res, next) => {
         batch.batch5.running === true ||
         batch.batch6.running === true) {
         res.render('live-view', {
+            isLoggedIn: req.session.isLoggedIn,
             runningBatches: JSON.stringify([
                 batch.batch1.running,
                 batch.batch2.running,

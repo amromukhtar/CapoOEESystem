@@ -32,10 +32,39 @@ app.use(session({ secret: 'capo oee system', saveUninitialized: false, resave: f
 
 app.use(router);
 
-const opts = { server: { auto_reconnect: true } }
-mongoose.connect('mongodb://localhost/database', opts, (result) => {
-    console.log('Mongo DB Connected');
+mongoose.connect('mongodb://localhost/section1');
+
+var db = mongoose.connection;
+db.on('error', () => {
+    console.log('Connection Error');
+});
+
+db.once('connected', () => {
+
+    console.log('Connected to the database');
     constant.getFactors();
+
+    const server = app.listen(3000);
+    const io = require('socket.io')(server);
+
+    io.on('connection', socket => {
+        // console.log('Client Connected');
+    })
+
+    module.exports.sendData = (event, message) => {
+        io.sockets.emit(event, message);
+    }
+
+    module.exports.batch1 = batch1;
+    module.exports.batch2 = batch2;
+    module.exports.batch3 = batch3;
+    module.exports.batch4 = batch4;
+    module.exports.batch5 = batch5;
+    module.exports.batch6 = batch6;
+});
+
+db.on('disconnected', () => {
+    console.log('Database disconnected');
 });
 
 //Mongoose v5
@@ -47,33 +76,7 @@ mongoose.connect('mongodb://localhost/database', opts, (result) => {
 //     console.log(err)
 // })
 
-const server = app.listen(3000);
-const io = require('socket.io')(server);
 
-io.on('connection', socket => {
-    // console.log('Client Connected');
-})
-
-module.exports.sendData = (event, message) => {
-    io.sockets.emit(event, message);
-}
-
-// global.downTime = [10, 10, 10, 10, 10, 10];
-// global.idealCycleRate = {
-//     Trepko_A: [180, 138, 138, 138, 138, 138, 138],
-//     Trepko_B: [100, 72],
-//     Trepko_C: [50, 50],
-//     Erca_A: [300, 300, 360],
-//     Erca_B: [300, 300, 300, 300, 360, 300],
-//     NovaPak: [28],
-// };
-
-module.exports.batch1 = batch1;
-module.exports.batch2 = batch2;
-module.exports.batch3 = batch3;
-module.exports.batch4 = batch4;
-module.exports.batch5 = batch5;
-module.exports.batch6 = batch6;
 
 
 

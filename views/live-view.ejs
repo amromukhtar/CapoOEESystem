@@ -50,9 +50,7 @@
 
         .loader {
             border: 30px solid #f3f3f3;
-            /* Light grey */
             border-top: 30px solid #3498db;
-            /* Blue */
             border-radius: 50%;
             width: 300px;
             height: 300px;
@@ -76,42 +74,40 @@
     <div class="live-view-container flex-c-m" id="container">
         <div class="nav-bar" style="display: none;" id="status">
             <div class="section" style="flex-basis: 40%;">
-                <p class="txt8" id="machine"></p>
-                <p class="txt8" id="product"></p>
+                <p class="txt8 title" id="machine"></p>
+                <p class="txt8 title" id="product"></p>
             </div>
             <div class="section" style="flex-basis: 20%;">
                 <img id="image" alt="" width="130" height="130">
             </div>
             <div class="section" style="flex-basis: 40%;">
-                <p class="txt8" id="batchNo">Batch No: </p>
-                <p class="txt8" id="date">Date: </p>
+                <p class="txt8 title" id="batchNo">Batch No: </p>
+                <p class="txt8 title" id="date">Date: </p>
             </div>
-            <!-- <div id="status"
-                style="width: 120px; height: 120px; background-color: #0cf500; border-radius: 50%;border: 1px solid black;">
-            </div> -->
         </div>
         <table class="table" style="display:none;">
             <tbody>
                 <tr>
-                    <td class="txt3" id="label1">TARGET</td>
-                    <td class="txt3" id="field1" style="color: #0cf500;">00</td>
+                    <td class="txt3 subTitle" id="label1">TARGET</td>
+                    <td class="txt3 subTitle" id="field1" style="color: #0cf500;">00</td>
                 </tr>
                 <tr>
-                    <td class="txt3" id="label2">ACTUAL</td>
-                    <td class="txt3" id="field2" style="color: #fcba03;">00</td>
+                    <td class="txt3 subTitle" id="label2">ACTUAL</td>
+                    <td class="txt3 subTitle" id="field2" style="color: #fcba03;">00</td>
                 </tr>
                 <tr>
-                    <td class="txt3" id="label3">M.EFF</td>
-                    <td class="txt3" id="field3" style="color: #0f03fc;">00%</td>
+                    <td class="txt3 subTitle" id="label3">M.EFF</td>
+                    <td class="txt3 subTitle" id="field3" style="color: #0f03fc;">00%</td>
                 </tr>
                 <tr>
-                    <td class="txt3" id="label4">DOWN TIME</td>
-                    <td class="txt3" id="field4" style="color: #fc0303;">00:00:00</td>
+                    <td class="txt3 subTitle" id="label4">DOWN TIME</td>
+                    <td class="txt3 subTitle" id="field4" style="color: #fc0303;">00:00:00</td>
                 </tr>
             </tbody>
         </table>
         <div class="loader"></div>
         <input style="display: none;" id="runningBatches" value="<%=runningBatches%>"></input>
+        <input style="display: none;" id="isLoggedIn" value="<%=isLoggedIn%>"></input>
     </div>
     <script src="/js/live-view.js"></script>
 </body>

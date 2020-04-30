@@ -210,6 +210,14 @@ iframe {
   line-height: 0.1;
 }
 
+.txt3L {
+  font-family: Verdana;
+  font-size: 140px;
+  font-weight: 1000;
+  color: #000000;
+  line-height: 0.1;
+}
+
 .txt4 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 120px;
@@ -237,6 +245,16 @@ iframe {
 .txt8 {
   font-family: Verdana;
   font-size: 32px;
+  font-weight: 900;
+  text-align: center;
+  color: white;
+  line-height: 1.5;
+  /* text-transform: uppercase; */
+}
+
+.txt8L {
+  font-family: Verdana;
+  font-size: 45px;
   font-weight: 900;
   text-align: center;
   color: white;

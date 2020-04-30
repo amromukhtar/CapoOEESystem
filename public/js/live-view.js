@@ -3,7 +3,10 @@ const socket = io({ transports: ['websocket'], upgrade: false });
 const table = document.querySelector('.table');
 const navBar = document.querySelector('.nav-bar');
 const loader = document.querySelector('.loader');
-const container = document.getElementById('container')
+const container = document.getElementById('container');
+const isLoggedIn = document.getElementById('isLoggedIn').value;
+const titles = document.querySelectorAll('.title');
+const subTitles = document.querySelectorAll('.subTitle');
 // const liveStatus = document.getElementById('status');
 
 // const runningBatches = JSON.parse(document.getElementById('runningBatches').value);
@@ -47,7 +50,7 @@ const runBatches = () => {
     batchParameters.map((batch, index) => {
         if (batch.running == true) {
             workingBatchIndex.push(Number(batchParameters[index].machineNo));
-            console.log('element', batch, index);
+            // console.log('element', batch, index);
         }
     })
     return workingBatchIndex.length;
@@ -109,6 +112,16 @@ const updateValues = () => {
     }, 1000);
 }
 
+
+// Before Timeout
+if (isLoggedIn != 'true') {
+    titles.forEach((title) => {
+        title.className = title.className.replace("txt8","txt8L");
+    })
+    subTitles.forEach((subTitle) => {
+        subTitle.className = subTitle.className.replace("txt3","txt3L");
+    })
+}
 
 setTimeout(() => {
     runBatches();
