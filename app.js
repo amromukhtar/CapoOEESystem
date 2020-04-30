@@ -52,14 +52,13 @@ db.once('connected', () => {
     module.exports.sendData = (event, message) => {
         io.sockets.emit(event, message);
     }
-
-    serial.handleSensorsData();
     module.exports.batch1 = batch1;
     module.exports.batch2 = batch2;
     module.exports.batch3 = batch3;
     module.exports.batch4 = batch4;
     module.exports.batch5 = batch5;
     module.exports.batch6 = batch6;
+    serial.handleSensorsData();
 });
 
 db.on('disconnected', () => {
