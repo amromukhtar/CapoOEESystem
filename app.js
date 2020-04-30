@@ -18,8 +18,6 @@ const batch4 = new Batch();
 const batch5 = new Batch();
 const batch6 = new Batch();
 
-serial.handleSensorsData();
-
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -55,6 +53,7 @@ db.once('connected', () => {
         io.sockets.emit(event, message);
     }
 
+    serial.handleSensorsData();
     module.exports.batch1 = batch1;
     module.exports.batch2 = batch2;
     module.exports.batch3 = batch3;
