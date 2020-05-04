@@ -7,6 +7,9 @@ const getProductNo = (machineNo, productNo) => {
             case '5':
                 prodNo = '2'
                 break;
+            default:
+                prodNo = productNo;
+                break;
         }
     }
     else if (machineNo == '4') {
@@ -19,6 +22,9 @@ const getProductNo = (machineNo, productNo) => {
             case '8':
             case '9':
                 prodNo = '5';
+                break;
+            default:
+                prodNo = productNo;
                 break;
         }
     }

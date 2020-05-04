@@ -30,7 +30,7 @@ app.use(session({ secret: 'capo oee system', saveUninitialized: false, resave: f
 
 app.use(router);
 
-mongoose.connect('mongodb://localhost/section1');
+mongoose.connect('mongodb://localhost/database');
 
 var db = mongoose.connection;
 db.on('error', () => {
