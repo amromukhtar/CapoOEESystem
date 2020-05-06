@@ -28,7 +28,7 @@ const getProductNo = (machineNo, productNo) => {
                 break;
         }
     }
-    else prodNo = productNo
+    else prodNo = productNo;
     return prodNo;
 }
 

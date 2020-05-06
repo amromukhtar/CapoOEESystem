@@ -18,7 +18,7 @@ exports.handleSensorsData = () => {
             batch.batch3.getSensorsData();
         }
         else if (data == 3 && batch.batch4.status == 'RUNNING') {
-            // batch.batch4.getSensorsData();
+            batch.batch4.getSensorsData();
         }
         else if (data == 4 && batch.batch5.status == 'RUNNING') {
             batch.batch5.getSensorsData();
