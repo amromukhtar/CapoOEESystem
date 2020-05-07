@@ -45,9 +45,9 @@ module.exports = {
         NovaPak: ['Mish'],
     },
     image: {
-        Trepko_A: ['natural_AB', 'set-yoghurt', 'delights_custard', 'delights_chocolate', 'millet_madida', 'hilba_madida', 'date_millet_madida'],
-        Trepko_B: ['natural_AB', 'set-yoghurt'],
-        Trepko_C: ['natural_C', 'set-yoghurt'],
+        Trepko_A: ['natural_AB', 'set_AB', 'delights_custard', 'delights_chocolate', 'millet_madida', 'hilba_madida', 'date_millet_madida'],
+        Trepko_B: ['natural_AB', 'set_AB'],
+        Trepko_C: ['natural_C', 'set_C'],
         Erca_A: ['natural', 'set-yoghurt', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut'],
         Erca_B: ['natural', 'set-yoghur', 'delights_custard', 'delights_chocolate', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut', 'fruit_straw', 'fruit_pineapp'],
         NovaPak: ['mish'],
