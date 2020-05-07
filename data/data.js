@@ -45,11 +45,11 @@ module.exports = {
         NovaPak: ['Mish'],
     },
     image: {
-        Trepko_A: ['natural_AB', 'set-yoghurtTA', 'delights_custardTA', 'delights_chocolateTA', 'millet_madida', 'hilba_madida', 'date_millet_adida'],
-        Trepko_B: ['natural_AB', 'set-yoghurtTP'],
-        Trepko_C: ['natural_C', 'set-yoghurtTC'],
-        Erca_A: ['naturalEA', 'set-yoghurtEA', 'flavor_strawEA', 'flavor_mongoEA', 'flavor_vanilaEA', 'flavor_coconutEA'],
-        Erca_B: ['naturalEB', 'set-yoghurtEB', 'delights_custardEB', 'delights_chocolateEB', 'flavor_strawEB', 'flavor_mongoEB', 'flavor_vanilaEB', 'flavor_coconutEB', 'fruit_straw', 'fruit_pineapp'],
+        Trepko_A: ['natural_AB', 'set-yoghurt', 'delights_custard', 'delights_chocolate', 'millet_madida', 'hilba_madida', 'date_millet_madida'],
+        Trepko_B: ['natural_AB', 'set-yoghurt'],
+        Trepko_C: ['natural_C', 'set-yoghurt'],
+        Erca_A: ['natural', 'set-yoghurt', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut'],
+        Erca_B: ['natural', 'set-yoghur', 'delights_custard', 'delights_chocolate', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut', 'fruit_straw', 'fruit_pineapp'],
         NovaPak: ['mish'],
     },
     getProductNo: getProductNo

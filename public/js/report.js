@@ -61,8 +61,8 @@ const renderReports = (reports) => {
             </div>
             <div class="flex-c-m col" style="flex-basis: 90% background-color:white; margin-top:10px;">
                 <img src="${report.imageURL}" width="140px" height="140px">
-                <p class="txt7 m-t-10">Batch No</p>
-                <p class="txt7">${report.batchNo}</p>
+                <p class="txt7 m-t-10">Batch No.: ${report.batchNo}</p>
+                <p class="txt7">${report.product}</p>
             </div>
             </div>
             <div class="col" style="flex-basis: 200%; background-color: ${cardColor};">
