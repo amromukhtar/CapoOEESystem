@@ -39,7 +39,7 @@ module.exports = class Batch {
 
         // Setting Ideal Cycle Rate
         this.cycleRate = global.idealCycleRate[machine_id[this.machineNo]][getProductNo(this.machineNo, this.productNo)];
-
+        
         // close Previous Timers
         try {
             clearInterval(id)

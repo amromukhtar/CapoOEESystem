@@ -1,6 +1,16 @@
 const getProductNo = (machineNo, productNo) => {
     let prodNo;
-    if (machineNo == '3') {
+    if (machineNo == '0') {
+        switch (productNo) {
+            case '3':
+                prodNo = '2'
+                break;
+            default:
+                prodNo = productNo;
+                break;
+        }
+    }
+    else if (machineNo == '3') {
         switch (productNo) {
             case '3':
             case '4':
@@ -14,13 +24,19 @@ const getProductNo = (machineNo, productNo) => {
     }
     else if (machineNo == '4') {
         switch (productNo) {
+            case '3':
+            case '4':
             case '5':
+                prodNo = '2';
+                break;
             case '6':
             case '7':
-                prodNo = '4';
-                break;
             case '8':
             case '9':
+                prodNo = '4';
+                break;
+            case '10':
+            case '11':
                 prodNo = '5';
                 break;
             default:
@@ -29,6 +45,8 @@ const getProductNo = (machineNo, productNo) => {
         }
     }
     else prodNo = productNo;
+
+    console.log(prodNo)
     return prodNo;
 }
 
@@ -41,7 +59,7 @@ module.exports = {
         Trepko_B: ['Natural', 'Set'],
         Trepko_C: ['Natural', 'Set'],
         Erca_A: ['Natural', 'Set', 'Flavor Straw', 'Flavor Mongo', 'Flavor Vanila', 'Flavor Coconut'],
-        Erca_B: ['Natural', 'Set', 'Delights Custard', 'Delights Chocolate', 'Flavor Straw', 'Flavor Mongo', 'Flavor Vanila', 'Flavor Coconut', 'Fruit Straw', 'Fruit Pineapp'],
+        Erca_B: ['Natural', 'Set', 'Delights Custard', 'Delights Chocolate', 'Delights RicePudding', 'Delights Mahallabia', 'Flavor Straw', 'Flavor Mongo', 'Flavor Vanila', 'Flavor Coconut', 'Fruit Straw', 'Fruit Pineapp'],
         NovaPak: ['Mish'],
     },
     image: {
@@ -49,7 +67,7 @@ module.exports = {
         Trepko_B: ['natural_AB', 'set_AB'],
         Trepko_C: ['natural_C', 'set_C'],
         Erca_A: ['natural', 'set-yoghurt', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut'],
-        Erca_B: ['natural', 'set-yoghur', 'delights_custard', 'delights_chocolate', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut', 'fruit_straw', 'fruit_pineapp'],
+        Erca_B: ['natural', 'set-yoghurt', 'delights_custard', 'delights_chocolate', 'delights_ricePudding', 'delights_mahallabia', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut', 'fruit_straw', 'fruit_pineapp'],
         NovaPak: ['mish'],
     },
     getProductNo: getProductNo

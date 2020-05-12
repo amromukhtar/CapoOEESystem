@@ -3,7 +3,7 @@ const products = {
     Trepko_B: ['Natural', 'Set'],
     Trepko_C: ['Natural', 'Set'],
     Erca_A: ['Natural', 'Set', 'Flavor Straw', 'Flavor Mongo', 'Flavor Vanila', 'Flavor Coconut'],
-    Erca_B: ['Natural', 'Set', 'Delights Custard', 'Delights Chocolate', 'Flavor Straw', 'Flavor Mongo', 'Flavor Vanila', 'Flavor Coconut', 'Fruit Straw', 'Fruit Pineapp'],
+    Erca_B: ['Natural', 'Set', 'Delights Custard', 'Delights Chocolate','Delights RicePudding','Delights Mahallabia', 'Flavor Straw', 'Flavor Mongo', 'Flavor Vanila', 'Flavor Coconut', 'Fruit Straw', 'Fruit Pineapp'],
     NovaPak: ['Mish'],
 }
 
