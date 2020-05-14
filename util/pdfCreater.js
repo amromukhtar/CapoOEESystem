@@ -1,12 +1,32 @@
 const PDFDocument = require('pdfkit');
+const moment = require('moment');
 
+const machineAbb = {
+    'Trepko A': 'TA',
+    'Trepko B': 'TB',
+    'Trepko C': 'TB',
+    'Erca A': 'EA',
+    'Erca B': 'EB',
+    'NovaPak': 'NP'
+}
 
 exports.createReport = (report) => {
 
     const pdf = new PDFDocument();
+
+    // Report Serial Creation 
+    const date = report.date.split('-');
+    const formatedDate = date[2]+date[1]+date[0].substr(2,2);
+    let reportSerialNo = machineAbb[report.machine] + "_";
+    reportSerialNo += report.batchNo //+ "_";
+    // reportSerialNo += formatedDate;
+
+    // Target Actual Ratio Calculation 
     const target = +report.target.split(" ")[0];
     const actual = +report.actual.split(" ")[0];
-    const tarActRatio = (actual / target).toFixed(2) * 100;
+    const tarActRatio = String((actual / target) * 100).substr(0, 4);
+
+
     //External Box
     drawLine(pdf, 40, 50, 560, 50, 1);
     drawLine(pdf, 40, 730, 560, 730, 1);
@@ -29,7 +49,8 @@ exports.createReport = (report) => {
 
     pdf.fontSize(14).text(`Section`, 210, 150);
     pdf.fontSize(14).text(`Fresh Filling`, 240, 180);
-    pdf.fontSize(14).text(`Report No: ${report.date}`, 390, 160);
+    pdf.fontSize(14).text(`Report No:`, 390, 150);
+    pdf.fontSize(15).text(`${reportSerialNo}`, 390, 180);
 
     // Machine 
     pdf.fontSize(14).text(`Machine Name: ${report.machine}`, 70, 225);
@@ -76,7 +97,7 @@ exports.createReport = (report) => {
     pdf.fontSize(14).text(`Downtime`, 70, 496);
     pdf.fontSize(14).text(`${report.downTime}`, 320, 496);
     //
-    pdf.fontSize(14).text(`Cycle Time`, 70, 519);
+    pdf.fontSize(14).text(`Pieces`, 70, 519);
     pdf.fontSize(14).text(`${report.cycleRate}`, 320, 519);
     pdf.fontSize(14).text(`% Quality`, 70, 542);
     pdf.fontSize(14).text(`${report.quality}`, 320, 542);
