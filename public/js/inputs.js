@@ -2,8 +2,8 @@ const products = {
     Trepko_A: ['Natural', 'Set', 'Delights Custard', 'Delights Chocolate', 'Millet Madida', 'Hilba Madida', 'Date & Millet Madida'],
     Trepko_B: ['Natural', 'Set'],
     Trepko_C: ['Natural', 'Set'],
-    Erca_A: ['Natural', 'Set', 'Flavor Straw', 'Flavor Mongo', 'Flavor Vanila', 'Flavor Coconut','Flavor Pineapp'],
-    Erca_B: ['Natural', 'Set', 'Delights Custard', 'Delights Chocolate','Delights RicePudding','Delights Mahallabia', 'Flavor Straw', 'Flavor Mongo', 'Flavor Vanila', 'Flavor Coconut','Flavor Pineapp', 'Fruit Straw', 'Fruit Pineapp'],
+    Erca_A: ['Natural', 'Set', 'Flavor Straw', 'Flavor Mango', 'Flavor Vanila', 'Flavor Coconut','Flavor Pineapp'],
+    Erca_B: ['Natural', 'Set', 'Delights Custard', 'Delights Chocolate','Delights RicePudding','Delights Mahallabia', 'Flavor Straw', 'Flavor Mango', 'Flavor Vanila', 'Flavor Coconut','Flavor Pineapp', 'Fruit Straw', 'Fruit Pineapp'],
     NovaPak: ['Mish'],
 }
 
