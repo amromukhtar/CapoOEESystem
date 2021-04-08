@@ -3,6 +3,7 @@ const User = require('../Models/User');
 const crypt = require('../util/encrypt');
 
 exports.getLogin = (req, res, next) => {
+    console.log('Hello')
     res.render('login', {
         error: false
     });

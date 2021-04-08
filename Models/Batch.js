@@ -200,6 +200,9 @@ module.exports = class Batch {
 
         // Performanace = (Total Counts / Run Time) / Ideal Cycle Time Rate
         this.performance = (this.actualCount / this.runTime) / this.cycleRate;
+        if (this.performance > 98) {
+            this.performance = 98;
+        }
 
         // Quality = 
         this.quality = 100;
