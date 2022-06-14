@@ -12,8 +12,8 @@ exports.setInputs = (req, res, next) => {
             batch.batch2,
             batch.batch3,
             batch.batch4,
-            batch.batch5,
-            batch.batch6
+            // batch.batch5,
+            // batch.batch6
         ])
     });
 }
@@ -23,6 +23,7 @@ exports.setInputs = (req, res, next) => {
 exports.postInputs = (req, res, next) => {
 
     const paramters = req.body;
+    console.log(paramters)
     paramters.supervisor = req.session.name;
     if (paramters.status == 'starting') {
 
@@ -42,14 +43,14 @@ exports.postInputs = (req, res, next) => {
             batch.batch4.setBatchValues(paramters, id.batch4);
             id.batch4 = batch.batch4.updateBatch();
         }
-        else if (paramters.machine == '4' && batch.batch5.status == 'FINISHED') {
-            batch.batch5.setBatchValues(paramters, id.batch5);
-            id.batch5 = batch.batch5.updateBatch();
-        }
-        else if (paramters.machine == '5' && batch.batch6.status == 'FINISHED') {
-            batch.batch6.setBatchValues(paramters, id.batch6);
-            id.batch6 = batch.batch6.updateBatch();
-        }
+        // else if (paramters.machine == '4' && batch.batch5.status == 'FINISHED') {
+        //     batch.batch5.setBatchValues(paramters, id.batch5);
+        //     id.batch5 = batch.batch5.updateBatch();
+        // }
+        // else if (paramters.machine == '5' && batch.batch6.status == 'FINISHED') {
+        //     batch.batch6.setBatchValues(paramters, id.batch6);
+        //     id.batch6 = batch.batch6.updateBatch();
+        // }
 
 
     }
@@ -68,12 +69,12 @@ exports.postInputs = (req, res, next) => {
         else if (paramters.machine == '3') {
             batch.batch4.endBatch();
         }
-        else if (paramters.machine == '4') {
-            batch.batch5.endBatch();
-        }
-        else if (paramters.machine == '5') {
-            batch.batch6.endBatch();
-        }
+        // else if (paramters.machine == '4') {
+        //     batch.batch5.endBatch();
+        // }
+        // else if (paramters.machine == '5') {
+        //     batch.batch6.endBatch();
+        // }
 
     }
 
@@ -82,8 +83,8 @@ exports.postInputs = (req, res, next) => {
         batch.batch2,
         batch.batch3,
         batch.batch4,
-        batch.batch5,
-        batch.batch6
+        // batch.batch5,
+        // batch.batch6
     ]));
 }
 

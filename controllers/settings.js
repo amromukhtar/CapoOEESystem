@@ -6,12 +6,10 @@ exports.getSettings = (req, res, next) => {
         authority: req.session.authority,
         username: req.session.name,
         downTime: global.downTime,
-        icrTrepko_A: global.idealCycleRate.Trepko_A,
-        icrTrepko_B: global.idealCycleRate.Trepko_B,
-        icrTrepko_C: global.idealCycleRate.Trepko_C,
-        icrErca_A: global.idealCycleRate.Erca_A,
-        icrErca_B: global.idealCycleRate.Erca_B,
-        icrNovaPak: global.idealCycleRate.NovaPak,
+        icrSimply_8: global.idealCycleRate.Simply_8,
+        icrTFA_A1_200: global.idealCycleRate.TFA_A1_200,
+        icrTFA_A1_500: global.idealCycleRate.TFA_A1_500,
+        icrTCA: global.idealCycleRate.TCA,
     })
 }
 

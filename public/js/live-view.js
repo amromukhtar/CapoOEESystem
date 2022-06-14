@@ -41,9 +41,9 @@ socket.on('batch3', parameters => { batchParameters[2] = parameters; });
 
 socket.on('batch4', parameters => { batchParameters[3] = parameters; });
 
-socket.on('batch5', parameters => { batchParameters[4] = parameters; });
+// socket.on('batch5', parameters => { batchParameters[4] = parameters; });
 
-socket.on('batch6', parameters => { batchParameters[5] = parameters; });
+// socket.on('batch6', parameters => { batchParameters[5] = parameters; });
 
 const runBatches = () => {
     workingBatchIndex = []

@@ -1,35 +1,32 @@
 const Constants = require('../util/database/constants');
+//4.0.8
+exports.getFactors = async () => {
+    try {
+        const constant = await Constants.find({ type: 'MachineFactors' });
+        if (constant.length == 0) {
+            global.downTime = [10, 10, 10, 10];
+            global.idealCycleRate = {
+                Simply_8: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                TFA_A1_200: [233.3, 233.3, 233.3, 233.3],
+                TFA_A1_500: [163, 163, 163, 163],
+                TCA: [241.6, 241.6, 241.6, 241.6, 241.6, 241.6],
+            };
+            const factors = new Constants({
+                type: 'MachineFactors',
+                downTime: global.downTime,
+                idealCycleRate: global.idealCycleRate
+            })
+            factors.save(() => {
+                console.log('Factors Has been Set');
+            })
+        }
 
-exports.getFactors = () => {
-    Constants.find({ type: 'MachineFactors' }).
-        then((constant) => {
-            if (constant.length != 0) {
-                global.downTime = constant[0].downTime;
-                global.idealCycleRate = constant[0].idealCycleRate;
-            }
-            else {
-                global.downTime = [10, 10, 10, 10, 10, 10];
-                global.idealCycleRate = {
-                    Trepko_A: [180, 138, 138, 138, 138, 138, 138],
-                    Trepko_B: [100, 72],
-                    Trepko_C: [50, 50],
-                    Erca_A: [300, 300, 360],
-                    Erca_B: [300, 300, 300, 300, 360, 300],
-                    NovaPak: [28],
-                };
-                const factors = new Constants({
-                    type: 'MachineFactors',
-                    downTime: global.downTime,
-                    idealCycleRate: global.idealCycleRate
-                })
-                factors.save(() => {
-                    console.log('Factors Has been Set');
-                })
-            }
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        global.downTime = constant[0].downTime;
+        global.idealCycleRate = constant[0].idealCycleRate;
+    }
+    catch(err){
+        console.log(err)
+    }
 
 }
 

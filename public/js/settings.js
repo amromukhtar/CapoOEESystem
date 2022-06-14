@@ -2,8 +2,8 @@ const dtA = document.getElementById('dt-A');
 const dtB = document.getElementById('dt-B');
 const dtC = document.getElementById('dt-C');
 const dteA = document.getElementById('dte-A');
-const dteB = document.getElementById('dte-B');
-const dtnP = document.getElementById('dtn-P');
+// const dteB = document.getElementById('dte-B');
+// const dtnP = document.getElementById('dtn-P');
 
 // const ctA = document.getElementById('ct-A');
 // const ctB = document.getElementById('ct-B');
@@ -12,12 +12,12 @@ const dtnP = document.getElementById('dtn-P');
 // const cteB = document.getElementById('cte-B');
 // const ctnP = document.getElementById('ctn-P');
 
-const icrTrepko_A = Array.from(document.querySelectorAll('.icrTrepko_A'));
-const icrTrepko_B = Array.from(document.querySelectorAll('.icrTrepko_B'));
-const icrTrepko_C = Array.from(document.querySelectorAll('.icrTrepko_C'));
-const icrErca_A = Array.from(document.querySelectorAll('.icrErca_A'));
-const icrErca_B = Array.from(document.querySelectorAll('.icrErca_B'));
-const icrNovaPak = Array.from(document.querySelectorAll('.icrNovaPak'));
+const icrSimply_8 = Array.from(document.querySelectorAll('.icrSimply_8'));
+const icrTFA_A1_200 = Array.from(document.querySelectorAll('.icrTFA_A1_200'));
+const icrTFA_A1_500 = Array.from(document.querySelectorAll('.icrTFA_A1_500'));
+const icrTCA = Array.from(document.querySelectorAll('.icrTCA'));
+// const icrErca_B = Array.from(document.querySelectorAll('.icrErca_B'));
+// const icrNovaPak = Array.from(document.querySelectorAll('.icrNovaPak'));
 
 const submitBtn = document.querySelector('.submit-btn');
 
@@ -38,12 +38,10 @@ submitBtn.addEventListener('click', (e) => {
 
 function fetchRequest() {
 
-    let icrTA = getICR(icrTrepko_A);
-    let icrTB = getICR(icrTrepko_B);
-    let icrTC = getICR(icrTrepko_C);
-    let icrEA = getICR(icrErca_A);
-    let icrEB = getICR(icrErca_B);
-    let icrNP = getICR(icrNovaPak);
+    let icrSM = getICR(icrSimply_8);
+    let icrTFA2 = getICR(icrTFA_A1_200);
+    let icrTFA5 = getICR(icrTFA_A1_500);
+    let icrTC = getICR(icrTCA);
 
     fetch("http://" + document.domain + ":3000/settings/factors", {
         method: 'POST',
@@ -56,16 +54,14 @@ function fetchRequest() {
                 Number(dtB.value),
                 Number(dtC.value),
                 Number(dteA.value),
-                Number(dteB.value),
-                Number(dtnP.value),
+                // Number(dteB.value),
+                // Number(dtnP.value),
             ],
             idealCycleRate: {
-                Trepko_A: icrTA,
-                Trepko_B: icrTB,
-                Trepko_C: icrTC,
-                Erca_A: icrEA,
-                Erca_B: icrEB,
-                NovaPak: icrNP,
+                icrSimply_8: icrSM,
+                icrTFA_A1_200: icrTFA2,
+                icrTFA_A1_500: icrTFA5,
+                icrTCA: icrTC,
             },
         })
     }).then((res) => {

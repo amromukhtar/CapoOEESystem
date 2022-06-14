@@ -52,24 +52,20 @@ const getProductNo = (machineNo, productNo) => {
 }
 
 module.exports = {
-    machine: ['Trepko A', 'Trepko B', 'Trepko C', 'Erca A', 'Erca B', 'NovaPak'],
-    machine_id: ['Trepko_A', 'Trepko_B', 'Trepko_C', 'Erca_A', 'Erca_B', 'NovaPak'],
-    batchName: ['batch1', 'batch2', 'batch3', 'batch4', 'batch5', 'batch6'],
+    machine: ['Simply 8', 'TFA A1 200', 'TFA A1 500', 'TCA', 'Erca B', 'NovaPak'],
+    machine_id: ['Simply_8', 'TFA_A1_200', 'TFA_A1_500', 'TCA'],
+    batchName: ['batch1', 'batch2', 'batch3', 'batch4'],
     product: {
-        Trepko_A: ['Natural', 'Set', 'Delights Custard', 'Delights Chocolate', 'Millet Madida', 'Hilba Madida', 'Date & Millet Madida'],
-        Trepko_B: ['Natural', 'Set'],
-        Trepko_C: ['Natural', 'Set'],
-        Erca_A: ['Natural', 'Set', 'Flavor Straw', 'Flavor Mango', 'Flavor Vanila', 'Flavor Coconut', 'Flavor Pineapp'],
-        Erca_B: ['Natural', 'Set', 'Delights Custard', 'Delights Chocolate', 'Delights RicePudding', 'Delights Mahallabia', 'Flavor Straw', 'Flavor Mango', 'Flavor Vanila', 'Flavor Coconut', 'Flavor Pineapp', 'Fruit Straw', 'Fruit Pineapp'],
-        NovaPak: ['Mish'],
+        Simply_8: ['Full cream milk', 'Sweetened milk', 'Low fat milk', 'Skimmed milk', 'Lactose free milk', 'Whipping cream', 'Date milk', 'Muganan pain milk', 'Muganan sweetend milk', 'Rio mango juice', 'Rio pineapple juice', 'Rio guaca juice', 'Rio tamarind juice', 'Rio hibiscus juice', 'Rio baobab juice', 'Rio vimto juice'],
+        TFA_A1_200: ['Full cream milk', 'Sweetened milk', 'Yomi sweetened milk', '90ml yomu sweetened'],
+        TFA_A1_500: ['Full cream milk', 'Sweetened milk', 'Yomi sweetened milk'],
+        TCA: ['Bibo Red cocktail', 'Bibo mango', 'Bibo pineapple ', 'Bibo vimto', 'Capo strawberry', 'Capo chocolate'],
     },
     image: {
-        Trepko_A: ['natural_AB', 'set_AB', 'delights_custard', 'delights_chocolate', 'millet_madida', 'hilba_madida', 'date_millet_madida'],
-        Trepko_B: ['natural_AB', 'set_AB'],
-        Trepko_C: ['natural_C', 'set_C'],
-        Erca_A: ['natural_AB', 'set-yoghurt', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut', 'flavor_pineapp'],
-        Erca_B: ['natural_AB', 'set-yoghurt', 'delights_custard', 'delights_chocolate', 'delights_ricePudding', 'delights_mahallabia', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut', 'flavor_pineapp', 'fruit_straw', 'fruit_pineapp'],
-        NovaPak: ['mish'],
+        Simply_8: ['natural_AB', 'set_AB', 'delights_custard', 'delights_chocolate', 'millet_madida', 'hilba_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida'],
+        TFA_A1_200: ['natural_AB', 'set_AB', 'set_AB', 'set_AB'],
+        TFA_A1_500: ['natural_C', 'set_C', 'set_AB'],
+        TCA: ['natural_AB', 'set-yoghurt', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut'],
     },
     getProductNo: getProductNo
 }

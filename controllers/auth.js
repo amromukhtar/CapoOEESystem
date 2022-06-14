@@ -1,4 +1,4 @@
-const User = require('../Models/User');
+const User = require('../util/database/User');
 
 const crypt = require('../util/encrypt');
 
@@ -10,8 +10,11 @@ exports.getLogin = (req, res, next) => {
 }
 
 exports.postLogin = (req, res, next) => {
+    console.log('Body', req.body)
     const user = req.body.username;
     const password = crypt.encrypt(req.body.password);
+
+    console.log(user, password)
     User.findOne({ user: user, password: password })
         .then((user) => {
             if (!user) {

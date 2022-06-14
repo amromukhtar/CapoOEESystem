@@ -1,8 +1,11 @@
-const SerialPort = require('serialport');
-const Readline = require('@serialport/parser-readline');
+// const SerialPort = require('serialport');
+const { SerialPort } = require('serialport')
+const { ReadlineParser } = require('@serialport/parser-readline')
 // const port = new SerialPort('COM11');
-const port = new SerialPort('/dev/ttyACM0');
-const parser = port.pipe(new Readline({ delimiter: '\n' }));
+// const port = new SerialPort('/dev/ttyACM0');
+const port = new SerialPort({ path: 'COM11', baudRate: 9600 })
+const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
+
 
 const batch = require('../app');
 
