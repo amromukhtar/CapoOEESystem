@@ -2,12 +2,10 @@ const PDFDocument = require('pdfkit');
 const moment = require('moment');
 
 const machineAbb = {
-    'Trepko A': 'TA',
-    'Trepko B': 'TB',
-    'Trepko C': 'TB',
-    'Erca A': 'EA',
-    'Erca B': 'EB',
-    'NovaPak': 'NP'
+    'Simply 8': 'S8',
+    'TFA_A1_200': 'TFA2',
+    'TFA_A1_500': 'TFA5',
+    'TCA': 'TCA',
 }
 
 exports.createReport = (report) => {
@@ -16,7 +14,7 @@ exports.createReport = (report) => {
 
     // Report Serial Creation 
     const date = report.date.split('-');
-    const formatedDate = date[2]+date[1]+date[0].substr(2,2);
+    const formatedDate = date[2] + date[1] + date[0].substr(2, 2);
     let reportSerialNo = machineAbb[report.machine] + "_";
     reportSerialNo += report.batchNo //+ "_";
     // reportSerialNo += formatedDate;
@@ -25,7 +23,6 @@ exports.createReport = (report) => {
     const target = +report.target.split(" ")[0];
     const actual = +report.actual.split(" ")[0];
     const tarActRatio = String((actual / target) * 100).substr(0, 4);
-
 
     //External Box
     drawLine(pdf, 40, 50, 560, 50, 1);
@@ -48,7 +45,7 @@ exports.createReport = (report) => {
     pdf.fontSize(15).text(`${report.date}`, 390, 110);
 
     pdf.fontSize(14).text(`Section`, 210, 150);
-    pdf.fontSize(14).text(`Fresh Filling`, 240, 180);
+    pdf.fontSize(14).text(`UHT`, 240, 180);
     pdf.fontSize(14).text(`Report No:`, 390, 150);
     pdf.fontSize(15).text(`${reportSerialNo}`, 390, 180);
 
@@ -81,9 +78,9 @@ exports.createReport = (report) => {
 
     pdf.fontSize(14).text(`Batch Results`, 250, 335);
     pdf.fontSize(14).text(`Target`, 70, 358);
-    pdf.fontSize(14).text(`${report.target}`, 320, 358);
+    pdf.fontSize(14).text(`${report.target.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, 320, 358);
     pdf.fontSize(14).text(`Actual`, 70, 381);
-    pdf.fontSize(14).text(`${report.actual}`, 320, 381);
+    pdf.fontSize(14).text(`${report.actual.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, 320, 381);
     //
     pdf.fontSize(14).text(`%Target-Actual`, 70, 404);
     pdf.fontSize(14).text(`${tarActRatio} %`, 320, 404);

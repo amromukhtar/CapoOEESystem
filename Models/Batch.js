@@ -37,7 +37,9 @@ module.exports = class Batch {
 
 
         // Setting Ideal Cycle Rate
-        this.cycleRate = global.idealCycleRate[machine_id[this.machineNo]][getProductNo(this.machineNo, this.productNo)];
+        this.cycleRate = global.idealCycleRate[machine_id[this.machineNo]][this.productNo]; //getProductNo(this.machineNo, this.productNo)
+        console.log(this.machineNo, this.productNo, this.cycleRate)
+
 
         // close Previous Timers
         try {
@@ -129,8 +131,8 @@ module.exports = class Batch {
             machine: this.machine,
             product: this.product,
             imageURL: this.imageURL,
-            target: this.numberWithCommas(this.target),
-            actual: this.numberWithCommas(this.actualCount),
+            target: this.target,
+            actual: this.actualCount,
             ppt: this.pptString,
             pst: this.pstString,
             runTime: this.runTimeString,

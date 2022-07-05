@@ -8,7 +8,7 @@ let reports = [];
 
 // Initilization
 ////////////////////////////////////////////////////
-let machineName = 'Trepko A';
+let machineName = 'Simply 8';
 fromDate.value = moment().format('YYYY-MM-DD');
 toDate.value = moment().format('YYYY-MM-DD');
 fetchRequest(machineName);
@@ -69,8 +69,8 @@ const renderReports = (reports) => {
                 <div class="row" style="flex-basis: 65%; padding: 15px;">
                     <div
                         style="flex-basis: 100%;margin-left: 25px;  display: flex; flex-direction: column;justify-content: space-around; border-right: 1px solid rgb(114, 100, 100);">
-                            <p class="txt2">Target : ${report.target}</p>
-                            <p class="txt2">Actual : ${report.actual}</p>
+                            <p class="txt2">Target : ${report.target.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                            <p class="txt2">Actual : ${report.actual.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                             <p class="txt2">M.Eff : ${report.meff}</p>
                             <p class="txt2">Downtime : ${report.downTime}</p>
                     </div>

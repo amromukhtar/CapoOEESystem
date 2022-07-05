@@ -58,10 +58,10 @@ function fetchRequest() {
                 // Number(dtnP.value),
             ],
             idealCycleRate: {
-                icrSimply_8: icrSM,
-                icrTFA_A1_200: icrTFA2,
-                icrTFA_A1_500: icrTFA5,
-                icrTCA: icrTC,
+                Simply_8: icrSM,
+                TFA_A1_200: icrTFA2,
+                TFA_A1_500: icrTFA5,
+                TCA: icrTC,
             },
         })
     }).then((res) => {

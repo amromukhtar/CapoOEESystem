@@ -52,20 +52,20 @@ const getProductNo = (machineNo, productNo) => {
 }
 
 module.exports = {
-    machine: ['Simply 8', 'TFA A1 200', 'TFA A1 500', 'TCA', 'Erca B', 'NovaPak'],
+    machine: ['Simply 8', 'TFA A1 200', 'TFA A1 500', 'TCA'],
     machine_id: ['Simply_8', 'TFA_A1_200', 'TFA_A1_500', 'TCA'],
     batchName: ['batch1', 'batch2', 'batch3', 'batch4'],
     product: {
-        Simply_8: ['Full cream milk', 'Sweetened milk', 'Low fat milk', 'Skimmed milk', 'Lactose free milk', 'Whipping cream', 'Date milk', 'Muganan pain milk', 'Muganan sweetend milk', 'Rio mango juice', 'Rio pineapple juice', 'Rio guaca juice', 'Rio tamarind juice', 'Rio hibiscus juice', 'Rio baobab juice', 'Rio vimto juice'],
-        TFA_A1_200: ['Full cream milk', 'Sweetened milk', 'Yomi sweetened milk', '90ml yomu sweetened'],
+        Simply_8: ['Full cream milk', 'Sweetened milk', 'Low fat milk', 'Skimmed milk', 'Lactose free milk', 'Whipping cream', 'Date milk', 'Muganan plain milk', 'Muganan sweetend milk', 'Rio mango juice', 'Rio pineapple juice', 'Rio guava juice', 'Rio tamarind juice', 'Rio hibiscus juice', 'Rio baobab juice', 'Rio vimto juice'],
+        TFA_A1_200: ['Full cream milk', 'Sweetened milk', 'Yomi sweetened milk', '90ml yomi sweetened'],
         TFA_A1_500: ['Full cream milk', 'Sweetened milk', 'Yomi sweetened milk'],
         TCA: ['Bibo Red cocktail', 'Bibo mango', 'Bibo pineapple ', 'Bibo vimto', 'Capo strawberry', 'Capo chocolate'],
     },
     image: {
-        Simply_8: ['natural_AB', 'set_AB', 'delights_custard', 'delights_chocolate', 'millet_madida', 'hilba_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida', 'date_millet_madida'],
-        TFA_A1_200: ['natural_AB', 'set_AB', 'set_AB', 'set_AB'],
-        TFA_A1_500: ['natural_C', 'set_C', 'set_AB'],
-        TCA: ['natural_AB', 'set-yoghurt', 'flavor_straw', 'flavor_mongo', 'flavor_vanila', 'flavor_coconut'],
+        Simply_8: ['full_cream_milk', 'sweetened1L', 'low_fat1L', 'skimmed_milk', 'lactose_free', 'whipping_cream', 'date_milk', 'plain_milk', 'sweetend_milk', 'capo_mango', 'capo_pineapple', 'rio_guava', 'rio_tamarind', 'rio_hibiscus', 'rio_baobab', 'capo_vimto'],
+        TFA_A1_200: ['full_cream_180', 'sweetened_180', 'yomi_180', 'yomi_180'],
+        TFA_A1_500: ['full_cream_450', 'sweetened_450', 'yomi_450'],
+        TCA: ['capo_cocktail', 'capo_mango', 'capo_pineapple', 'capo_vimto', 'capo_strawberry', 'capo_chocolate'],
     },
     getProductNo: getProductNo
 }

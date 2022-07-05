@@ -4,5 +4,5 @@ exports.encrypt = (str) => {
         var hex = Number(str.charCodeAt(n)).toString(16);
         arr1.push(hex);
     }
-    return arr1.join('');
+    return arr1.join('').toUpperCase();
 }

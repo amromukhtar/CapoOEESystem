@@ -19,7 +19,6 @@ const pst = document.getElementById('pst');
 let response = batch;
 
 date.value = moment().format('YYYY-MM-DD');
-console.log(date.value);
 
 (function ($) {
     "use strict";
@@ -164,7 +163,7 @@ renderRunningBatches = (batch) => {
             li.innerHTML =
                 li.innerHTML = `
         <div class="row" id=${batch.machineNo}>
-            <div class="m-t-10" style="width:180px">
+            <div class="m-t-10" style="width:200px">
               <p class="txt-input-form">${batch.batchNo}</p>
               </br>
               <p class="txt-input-form" name="machine">${'Machine: ' + batch.machine}</p>

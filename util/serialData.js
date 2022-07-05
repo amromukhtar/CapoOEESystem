@@ -1,9 +1,9 @@
-// const SerialPort = require('serialport');
 const { SerialPort } = require('serialport')
 const { ReadlineParser } = require('@serialport/parser-readline')
 // const port = new SerialPort('COM11');
 // const port = new SerialPort('/dev/ttyACM0');
-const port = new SerialPort({ path: 'COM11', baudRate: 9600 })
+// const port = new SerialPort({ path: 'COM11', baudRate: 9600 })
+const port = new SerialPort({ path: '/dev/ttyACM0', baudRate: 9600 })
 const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
 
 
